@@ -2,14 +2,23 @@ package wzhkun.securepw.ui.javafx;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 
-public class JavaFXLogin extends Scene{
+public class JavaFXLogin {
+	@FXML
+	PasswordField password;
 	
-	public JavaFXLogin() throws IOException {
-		super((Parent) FXMLLoader.load(JavaFXLogin.class.getResource("Login.fxml")));
+	@FXML
+	public void login(){
+		
+	}
+	@FXML
+	public void reset(){
+		
 	}
 
 }
