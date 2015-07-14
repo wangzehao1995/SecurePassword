@@ -22,10 +22,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" style="-fx-base: limegreen;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="5">
-         <font>
-            <Font size="24.0" />
-         </font></Button>
+      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" style="-fx-base: limegreen;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <PasswordField fx:id="password" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#login" style="-fx-base: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Button mnemonicParsing="false" onAction="#reset" style="-fx-base: #ee1111;" text="Reset" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
    </children>
