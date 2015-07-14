@@ -28,8 +28,8 @@ public class MainApplication extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		app=this;
 		this.stage=primaryStage;
-		stage.setWidth(cmToPx(16));
-		stage.setHeight(cmToPx(12));
+		stage.setWidth(cmToPx(9));
+		stage.setHeight(cmToPx(16));
 		stage.show();		
 		showLoginScene();
 		
