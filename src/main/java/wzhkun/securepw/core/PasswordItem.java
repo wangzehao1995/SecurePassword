@@ -6,6 +6,7 @@ import java.util.Date;
 public class PasswordItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 
+	private final String site;
 	private final String account;
 	private transient String lastPassword;
 	private String password;
@@ -22,7 +23,8 @@ public class PasswordItem implements Serializable{
 		updateTime=System.currentTimeMillis();
 	}
 	
-	public PasswordItem(String key,String value){
+	public PasswordItem(String site,String key,String value){
+		this.site=site;
 		this.account=key;
 		this.password=value;
 		this.updateTime=System.currentTimeMillis();
@@ -30,6 +32,10 @@ public class PasswordItem implements Serializable{
 	
 	public String getAccount() {
 		return account;
+	}
+	
+	public String getSite(){
+		return site;
 	}
 	
 	public String getLastPassword(){

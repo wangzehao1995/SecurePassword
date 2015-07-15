@@ -1,22 +1,38 @@
 package wzhkun.securepw.ui.javafx;
 
-import java.io.IOException;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import wzhkun.securepw.core.PasswordItem;
 
 public class JavaFXPasswordItem {
+	public JavaFXPasswordItem(PasswordItem item) {
+		site=new TextField(item.getSite());
+		site.setStyle("-fx-base:yellow");
+		site.setEditable(false);
+		account=new TextField(item.getAccount());
+		account.setEditable(false);
+		lastPassword=new TextField(item.getLastPassword());
+		if(item.getLastPassword()==null)
+			lastPassword.setVisible(false);
+		password=new TextField(item.getPassword());
+		password.setEditable(false);
+	}
 
-	private Pane pane;
+	private GridPane pane;
+	private TextField site;
+	private TextField account;
+	private TextField lastPassword;
+	private TextField password;
 	
 	public Pane getPane(){
 		if (pane == null) {
-			try {
-				pane = new Pane((Parent) FXMLLoader.load(getClass().getResource("PasswordItem.fxml")));
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
+			pane=new GridPane();
+			
+			pane.add(site, 0,0);
+			pane.add(lastPassword, 1, 0);
+			pane.add(account, 0, 1);
+			pane.add(password, 1, 1);
 		}
 		return pane;
 	}

@@ -12,11 +12,11 @@ public class SafeTest {
 	@Test
 	public void test() throws Exception {
 		Safe<PasswordItem> safe=new Safe<>(password);
-		safe.add(new PasswordItem(key, value));
-		assertTrue(safe.allItems().contains(new PasswordItem(key, value)));
+		safe.add(new PasswordItem(key,key, value));
+		assertTrue(safe.allItems().contains(new PasswordItem(key,key, value)));
 		byte[] encrypted=safe.encrypt();
 		Safe<PasswordItem> decrypted=new Safe<>(encrypted, password);
-		assertTrue(decrypted.allItems().contains(new PasswordItem(key, value)));
+		assertTrue(decrypted.allItems().contains(new PasswordItem(key,key, value)));
 		safe.changePassword(newPassword);
 		try{
 			decrypted=new Safe<>(encrypted, newPassword);
@@ -25,9 +25,9 @@ public class SafeTest {
 		}
 		encrypted=safe.encrypt();
 		decrypted=new Safe<>(encrypted, newPassword);
-		assertTrue(safe.allItems().contains(new PasswordItem(key, value)));
-		safe.remove(new PasswordItem(key, value));
-		assertFalse(safe.allItems().contains(new PasswordItem(key, value)));
+		assertTrue(safe.allItems().contains(new PasswordItem(key,key, value)));
+		safe.remove(new PasswordItem(key,key, value));
+		assertFalse(safe.allItems().contains(new PasswordItem(key,key, value)));
 	}
 
 }
