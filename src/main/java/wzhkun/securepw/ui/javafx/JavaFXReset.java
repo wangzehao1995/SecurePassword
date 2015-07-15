@@ -1,17 +1,16 @@
 package wzhkun.securepw.ui.javafx;
 
 import java.io.IOException;
+import java.util.function.Consumer;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.ui.ResetScene;
 
-public class JavaFXReset {
+public class JavaFXReset implements ResetScene{
 	private Scene scene;
 
 	public Scene getScene() {
@@ -30,17 +29,25 @@ public class JavaFXReset {
 
 	@FXML
 	public void reset() {
-		ButtonType result=new Alert(AlertType.CONFIRMATION).showAndWait().get();
-		if (result==ButtonType.OK){
-			BLServiceManager.getResetBL().reset(password.getText());
-		}else if(result==ButtonType.CANCEL){
-			cancel();
-		}
+		resetHandler.accept(password.getText());
 	}
 
 	@FXML
 	public void cancel() {
-		MainApplication.getMainApplication().showLastScene();
+		cancelHandler.accept(null);
+	}
+
+	private Consumer<String> resetHandler;
+	private Consumer<Object> cancelHandler;
+	
+	@Override
+	public void setResetHandler(Consumer<String> passwordConsumer) {
+		this.resetHandler=passwordConsumer;
+	}
+
+	@Override
+	public void setCancelHandler(Consumer<Object> nullConsumer) {
+		this.cancelHandler=nullConsumer;
 	}
 
 }
