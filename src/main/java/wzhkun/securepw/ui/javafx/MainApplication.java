@@ -22,17 +22,22 @@ public class MainApplication extends Application{
 	private Stage stage;
 	private JavaFXLogin login=new JavaFXLogin();
 	private JavaFXReset reset=new JavaFXReset();
+	private JavaFXPasswordBox box=new JavaFXPasswordBox();
 	private Stack<Scene> sceneStack=new Stack<>();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		app=this;
 		this.stage=primaryStage;
-		stage.setWidth(cmToPx(9));
-		stage.setHeight(cmToPx(16));
-		stage.show();		
+		showStage();		
 		showLoginScene();
 		
+	}
+
+	private void showStage() {
+		stage.setWidth(cmToPx(9));
+		stage.setHeight(cmToPx(16));
+		stage.show();
 	}
 
 	public void showResetScene(){
@@ -42,6 +47,11 @@ public class MainApplication extends Application{
 	
 	public void showLoginScene(){
 		sceneStack.push(login.getScene());
+		showSceneOnPeek();
+	}
+	
+	public void showPasswordBoxScene(){
+		sceneStack.push(box.getScene());
 		showSceneOnPeek();
 	}
 	

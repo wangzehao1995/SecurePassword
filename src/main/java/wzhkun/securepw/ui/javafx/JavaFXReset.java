@@ -12,7 +12,7 @@ import javafx.scene.control.ButtonType;
 import wzhkun.securepw.bl.BLServiceManager;
 
 public class JavaFXReset {
-	private Scene scene;
+	private static Scene scene;
 
 	public Scene getScene() {
 		if (scene == null) {

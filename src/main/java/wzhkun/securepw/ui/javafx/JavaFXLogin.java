@@ -15,7 +15,7 @@ import wzhkun.securepw.bl.BLServiceManager;
 
 public class JavaFXLogin {
 	
-	private Scene scene;
+	private static Scene scene;
 	
 	public Scene getScene(){
 		if (scene == null) {
@@ -35,6 +35,7 @@ public class JavaFXLogin {
 	public void login(){
 		try {
 			BLServiceManager.getLoginBL().login(password.getText());
+			MainApplication.getMainApplication().showPasswordBoxScene();
 		} catch (BadPaddingException e) {
 			new Alert(AlertType.ERROR,"Wrong Password").showAndWait();
 			e.printStackTrace();
