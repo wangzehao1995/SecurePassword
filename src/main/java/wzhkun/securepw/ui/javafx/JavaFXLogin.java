@@ -1,7 +1,8 @@
 package wzhkun.securepw.ui.javafx;
 
 import java.io.IOException;
-import java.util.function.Consumer;
+
+import javax.crypto.BadPaddingException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
-import wzhkun.securepw.ui.LoginScene;
+import wzhkun.securepw.bl.BLServiceManager;
 
-public class JavaFXLogin implements LoginScene{
+public class JavaFXLogin {
 	
 	private Scene scene;
 	
-	@Override
 	public Scene getScene(){
 		if (scene == null) {
 			try {
@@ -33,26 +33,22 @@ public class JavaFXLogin implements LoginScene{
 	
 	@FXML
 	public void login(){
-		loginHandler.accept(password.getText());
+		try {
+			BLServiceManager.getLoginBL().login(password.getText());
+		} catch (BadPaddingException e) {
+			new Alert(AlertType.ERROR,"Wrong Password").showAndWait();
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			new Alert(AlertType.ERROR,"There's something wrong with storage file.\nTry \"reset\".").showAndWait();
+			e.printStackTrace();
+		} catch (IOException e) {
+			new Alert(AlertType.ERROR,"Can't read the storage file.\n"+e.getMessage()).showAndWait();
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void reset(){
-		toResetSceneHandler.accept(null);
-	}
-	
-	private Consumer<String> loginHandler;
-	private Consumer<Object> toResetSceneHandler;
-	@Override
-	public void setLoginHandler(Consumer<String> passwordConsumer) {
-		this.loginHandler=passwordConsumer;
-	}
-	@Override
-	public void toResetSceneHandler(Consumer<Object> nullConsumer) {
-		this.toResetSceneHandler=nullConsumer;
-	}
-	@Override
-	public void showError(String message) {
-		new Alert(AlertType.ERROR,message);
+		MainApplication.getMainApplication().showResetScene();
 	}
 
 }

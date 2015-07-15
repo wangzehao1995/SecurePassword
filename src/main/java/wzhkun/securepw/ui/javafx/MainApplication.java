@@ -7,33 +7,44 @@ import java.util.Stack;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import wzhkun.securepw.ui.DisplayController;
-import wzhkun.securepw.ui.SceneContiner;
 
-public class JavaFXApplication extends Application implements DisplayController{
-	private static DisplayController app;
+public class MainApplication extends Application{
+	private static MainApplication app;
 	
-	public static DisplayController getMainApplication(){
+	public static MainApplication getMainApplication(){
 		return app;
+	}
+	
+	public static void main(String[] args) {
+		Application.launch(MainApplication.class);
 	}
 
 	private Stage stage;
+	private JavaFXLogin login=new JavaFXLogin();
+	private JavaFXReset reset=new JavaFXReset();
 	private Stack<Scene> sceneStack=new Stack<>();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		app=this;
 		this.stage=primaryStage;
-		JavaFXUIManager.getUIManager().initCompleted();
-	}
-	
-	public void showApplication(){
 		stage.setWidth(cmToPx(9));
 		stage.setHeight(cmToPx(16));
-		stage.show();
+		stage.show();		
+		showLoginScene();
+		
+	}
+
+	public void showResetScene(){
+		sceneStack.push(reset.getScene());
+		showSceneOnPeek();
 	}
 	
-	@Override
+	public void showLoginScene(){
+		sceneStack.push(login.getScene());
+		showSceneOnPeek();
+	}
+	
 	public void showLastScene(){
 		sceneStack.pop();
 		showSceneOnPeek();
@@ -41,11 +52,5 @@ public class JavaFXApplication extends Application implements DisplayController{
 
 	private void showSceneOnPeek() {
 		stage.setScene(sceneStack.peek());
-	}
-
-	@Override
-	public void showScene(SceneContiner scene) {
-		sceneStack.push((Scene) scene.getScene());
-		showSceneOnPeek();
 	}
 }
