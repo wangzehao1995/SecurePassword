@@ -36,11 +36,17 @@ public class PasswordBoxController {
 	
 	@FXML
 	public void close(){
-		
+		bl.setPasswordSafe(null);
+		MainApplication.getMainApplication().showLastScene();
+	}
+	
+	private void clean(){
+		box.getChildren().clear();
+		controllerMap.clear();
 	}
 	
 	public void display(){
-		box.getChildren().clear();
+		clean();
 		List<PasswordItem> items=bl.getPasswordItems();
 		for(PasswordItem item:items){
 			addPasswordItem(item);

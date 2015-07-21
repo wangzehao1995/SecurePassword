@@ -19,6 +19,7 @@ public class LoginController {
 	public void login(){
 		try {
 			BLServiceManager.getLoginBL().login(password.getText());
+			password.setText("");
 			MainApplication.getMainApplication().showPasswordBoxScene();
 		} catch (BadPaddingException e) {
 			new Alert(AlertType.ERROR,"Wrong Password").showAndWait();

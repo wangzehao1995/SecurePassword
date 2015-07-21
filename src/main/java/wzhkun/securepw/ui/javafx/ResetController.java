@@ -17,6 +17,7 @@ public class ResetController {
 	@FXML
 	public void reset() {
 		ButtonType result=new Alert(AlertType.CONFIRMATION).showAndWait().get();
+		
 		if (result==ButtonType.OK){
 			try {
 				BLServiceManager.getResetBL().reset(password.getText());
@@ -24,13 +25,14 @@ public class ResetController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(result==ButtonType.CANCEL){
-			cancel();
 		}
+		
+		cancel();
 	}
 
 	@FXML
 	public void cancel() {
+		password.setText("");
 		MainApplication.getMainApplication().showLastScene();
 	}
 
