@@ -11,26 +11,29 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-class AESEncryptor implements Encryptor{
+class AESEncryptor implements Encryptor {
 	private final Cipher encryptor;
 	private final Cipher decryptor;
+
+	private static int TYPE = 256;
+
 	AESEncryptor(String password) {
 		try {
-			Key key=buildKey(password);
-			this.encryptor=Cipher.getInstance("AES");
-			this.decryptor=Cipher.getInstance("AES");
+			Key key = buildKey(password);
+			this.encryptor = Cipher.getInstance("AES");
+			this.decryptor = Cipher.getInstance("AES");
 			encryptor.init(Cipher.ENCRYPT_MODE, key);
 			decryptor.init(Cipher.DECRYPT_MODE, key);
-		} catch (NoSuchAlgorithmException|NoSuchPaddingException | InvalidKeyException e) {
+		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	public byte[] encrypt(byte[] input) {
-		try {			
-			byte[] result= encryptor.doFinal(input);
+		try {
+			byte[] result = encryptor.doFinal(input);
 			return result;
-		} catch (IllegalBlockSizeException|BadPaddingException e) {
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -43,23 +46,27 @@ class AESEncryptor implements Encryptor{
 		}
 	}
 
-	private Key buildKey(String password){
-		byte[] hashCode256bits=sha256(password);
-		SecretKeySpec key=new SecretKeySpec(hashCode256bits, "AES");
+	private Key buildKey(String password) {
+		byte[] hashCode256bits = sha256(password);
+		SecretKeySpec key = new SecretKeySpec(hashCode256bits, "AES");
 		return key;
 	}
-	
-	private byte[] sha256(String password){
-		final String algorithm="SHA-256";
+
+	private byte[] sha256(String password) {
+		final String algorithm = "SHA-256";
 		MessageDigest md;
 		try {
 			md = MessageDigest.getInstance(algorithm);
 		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
-		byte[] hashCode=md.digest(password.getBytes());
-		byte[] fuck=new byte[16];
-		System.arraycopy(hashCode, 0, fuck, 0, 16);
-		return fuck;
+		byte[] hashCode = md.digest(password.getBytes());
+		if (TYPE == 128) {
+			byte[] fuck = new byte[16];
+			System.arraycopy(hashCode, 0, fuck, 0, 16);
+			return fuck;
+		} else {
+			return hashCode;
+		}
 	}
 }

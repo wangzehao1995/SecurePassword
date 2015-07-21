@@ -5,28 +5,12 @@ import java.io.IOException;
 import javax.crypto.BadPaddingException;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import wzhkun.securepw.bl.BLServiceManager;
 
-public class JavaFXLogin {
-	
-	private static Scene scene;
-	
-	public Scene getScene(){
-		if (scene == null) {
-			try {
-				scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("Login.fxml")));
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		return scene;
-	}
+public class LoginController {
 	
 	@FXML
 	PasswordField password;

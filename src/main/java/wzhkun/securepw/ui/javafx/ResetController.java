@@ -1,29 +1,13 @@
 package wzhkun.securepw.ui.javafx;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import wzhkun.securepw.bl.BLServiceManager;
 
-public class JavaFXReset {
-	private static Scene scene;
-
-	public Scene getScene() {
-		if (scene == null) {
-			try {
-				scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("Reset.fxml")));
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		return scene;
-	}
+public class ResetController {
 
 	@FXML
 	PasswordField password;

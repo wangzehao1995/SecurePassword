@@ -3,8 +3,8 @@ package wzhkun.securepw.ui.javafx;
 import static wzhkun.securepw.ui.javafx.DPIFormatter.*;
 
 import java.util.Stack;
-
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -20,9 +20,12 @@ public class MainApplication extends Application{
 	}
 
 	private Stage stage;
-	private JavaFXLogin login=new JavaFXLogin();
-	private JavaFXReset reset=new JavaFXReset();
-	private JavaFXPasswordBox box=new JavaFXPasswordBox();
+	private Scene loginScene;
+	private Scene resetScene;
+	private Scene boxScene;
+	private ObjectAndController<Parent, LoginController> login;
+	private ObjectAndController<Parent, ResetController> reset;
+	private ObjectAndController<Parent, PasswordBoxController> box;
 	private Stack<Scene> sceneStack=new Stack<>();
 	
 	@Override
@@ -41,17 +44,29 @@ public class MainApplication extends Application{
 	}
 
 	public void showResetScene(){
-		sceneStack.push(reset.getScene());
+		if(reset==null){
+			reset=new ObjectAndController<>(getClass().getResource("Reset.fxml"));
+			resetScene=new Scene(reset.getObejct());
+		}
+		sceneStack.push(resetScene);
 		showSceneOnPeek();
 	}
 	
 	public void showLoginScene(){
-		sceneStack.push(login.getScene());
+		if(login==null){
+			login=new ObjectAndController<>(getClass().getResource("Login.fxml"));
+			loginScene=new Scene(login.getObejct());
+		}
+		sceneStack.push(loginScene);
 		showSceneOnPeek();
 	}
 	
 	public void showPasswordBoxScene(){
-		sceneStack.push(box.getScene());
+		if(box==null){
+			box=new ObjectAndController<>(getClass().getResource("PasswordBox.fxml"));
+			boxScene=new Scene(box.getObejct());
+		}
+		sceneStack.push(boxScene);
 		showSceneOnPeek();
 	}
 	
@@ -63,4 +78,5 @@ public class MainApplication extends Application{
 	private void showSceneOnPeek() {
 		stage.setScene(sceneStack.peek());
 	}
+	
 }
