@@ -2,15 +2,18 @@ package wzhkun.securepw.bl;
 
 public class BLServiceManager {
 	
+	private static LoginBL loginBL=new LoginBL();
 	public static LoginBL getLoginBL(){
-		return new LoginBL();
+		return loginBL;
 	}
 	
+	public static ResetBL resetBL=new ResetBL();
 	public static ResetBL getResetBL(){
-		return new ResetBL();
+		return resetBL;
 	}
 	
+	public static PasswordSafeBL safeBL=new PasswordSafeBL();
 	public static PasswordSafeBL getPasswordSafeBL(){
-		return new PasswordSafeBL();
+		return safeBL;
 	}
 }

@@ -7,8 +7,8 @@ import java.util.function.Function;
 import javafx.fxml.FXMLLoader;
 
 public class ObjectAndController <O,C>{
-	O object;
-	C controller;
+	private O object;
+	private C controller;
 	
 	private ObjectAndController(){
 	}

@@ -1,5 +1,7 @@
 package wzhkun.securepw.ui.javafx;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
@@ -16,7 +18,12 @@ public class ResetController {
 	public void reset() {
 		ButtonType result=new Alert(AlertType.CONFIRMATION).showAndWait().get();
 		if (result==ButtonType.OK){
-			BLServiceManager.getResetBL().reset(password.getText());
+			try {
+				BLServiceManager.getResetBL().reset(password.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(result==ButtonType.CANCEL){
 			cancel();
 		}

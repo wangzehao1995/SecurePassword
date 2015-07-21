@@ -65,6 +65,7 @@ public class MainApplication extends Application{
 		if(box==null){
 			box=new ObjectAndController<>(getClass().getResource("PasswordBox.fxml"));
 			boxScene=new Scene(box.getObejct());
+			box.getController().display();
 		}
 		sceneStack.push(boxScene);
 		showSceneOnPeek();

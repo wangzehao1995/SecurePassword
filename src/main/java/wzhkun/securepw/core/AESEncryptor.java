@@ -15,7 +15,7 @@ class AESEncryptor implements Encryptor {
 	private final Cipher encryptor;
 	private final Cipher decryptor;
 
-	private static int TYPE = 256;
+	private static int TYPE = 128;
 
 	AESEncryptor(String password) {
 		try {
