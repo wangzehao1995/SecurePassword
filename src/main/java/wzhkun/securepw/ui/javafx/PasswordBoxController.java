@@ -23,6 +23,11 @@ public class PasswordBoxController {
 	public void setting(){
 	}
 	
+	@FXML
+	public void close(){
+		
+	}
+	
 	public void initBox(){
 		addPasswordItem(new PasswordItem("fuck", "fuck", "fuck"));
 	}
