@@ -45,7 +45,7 @@ public class Safe <T extends Serializable> implements Serializable {
 		this.entities.addAll((Collection<? extends T>) safe.allItems());
 	}
 
-	public void changePassword(String newPassword) throws BadPaddingException {
+	public void changePassword(String newPassword){
 		encryptor=EncryptorFactory.getEncryptor(newPassword);
 	}
 

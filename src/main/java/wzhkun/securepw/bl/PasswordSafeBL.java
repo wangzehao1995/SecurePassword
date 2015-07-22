@@ -37,4 +37,9 @@ public class PasswordSafeBL {
 	public Set<PasswordItem> getPasswordItems(){
 		return safe.allItems();
 	}
+	
+	public void changePassword(String newPassword) throws IOException{
+		safe.changePassword(newPassword);
+		safe.save();
+	}
 }

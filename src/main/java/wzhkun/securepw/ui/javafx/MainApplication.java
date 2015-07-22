@@ -31,6 +31,7 @@ public class MainApplication extends Application {
 	private ObjectAndController<Parent, MainSceneController> main;
 	private ObjectAndController<Parent, PasswordItemEditorController> editor;
 	private ObjectAndController<Pane, PasswordBoxController> passwordBox;
+	private ObjectAndController<Pane, ChangePasswordController> changePassword;
 	private Stack<Scene> sceneStack = new Stack<>();
 
 	@Override
@@ -88,6 +89,14 @@ public class MainApplication extends Application {
 		}
 		main.getController().setMainScene(passwordBox);
 		refreshPasswordBox();
+	}
+	
+	public void showChangePasswordScene(){
+		showMainScene();
+		if(changePassword==null){
+			changePassword=UIFactory.getUIFactory().getChangePassword();
+		}
+		main.getController().setMainScene(changePassword);
 	}
 
 	public void showMainScene() {

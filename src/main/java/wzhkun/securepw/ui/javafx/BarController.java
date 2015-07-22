@@ -11,6 +11,7 @@ public class BarController {
 
 	@FXML
 	public void changePassword() {
+		MainApplication.getMainApplication().showChangePasswordScene();
 	}
 
 	@FXML

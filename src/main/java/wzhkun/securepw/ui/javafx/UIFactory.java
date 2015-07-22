@@ -43,4 +43,8 @@ public class UIFactory {
 	private ObjectAndController<Pane, BarController> getBar(){
 		return new ObjectAndController<>(getClass().getResource("Bar.fxml"));
 	}
+	
+	public ObjectAndController<Pane, ChangePasswordController> getChangePassword(){
+		return new ObjectAndController<>(getClass().getResource("ChangePassword.fxml"));
+	}
 }
