@@ -97,6 +97,12 @@ public class MainApplication extends Application {
 		}
 		showScene(mainScene);
 	}
+	
+	private void hideBar(){
+		if(!sceneStack.isEmpty()&&sceneStack.peek()==mainScene){
+			main.getController().hideBar();
+		}
+	}
 
 	public void showPasswordItemEditorScene() {
 		if (editor == null) {
@@ -132,6 +138,7 @@ public class MainApplication extends Application {
 		if (sceneStack.isEmpty() || sceneStack.peek() != scene) {
 			sceneStack.push(scene);
 		}
+		hideBar();
 		showSceneOnPeek();
 	}
 
