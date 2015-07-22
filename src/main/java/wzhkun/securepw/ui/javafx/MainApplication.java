@@ -6,6 +6,7 @@ import java.util.Stack;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import wzhkun.securepw.core.PasswordItem;
 
@@ -23,19 +24,20 @@ public class MainApplication extends Application {
 	private Stage stage;
 	private Scene loginScene;
 	private Scene resetScene;
-	private Scene boxScene;
+	private Scene mainScene;
 	private Scene editorScene;
 	private ObjectAndController<Parent, LoginController> login;
 	private ObjectAndController<Parent, ResetController> reset;
-	private ObjectAndController<Parent, MainSceneController> box;
+	private ObjectAndController<Parent, MainSceneController> main;
 	private ObjectAndController<Parent, PasswordItemEditorController> editor;
+	private ObjectAndController<Pane, PasswordBoxController> passwordBox;
 	private Stack<Scene> sceneStack = new Stack<>();
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		app = this;
 		this.stage = primaryStage;
-		
+
 		showLoginScene();
 		showStage();
 
@@ -46,21 +48,21 @@ public class MainApplication extends Application {
 		stage.setHeight(cmToPx(16));
 		stage.show();
 	}
-	
-	public void showChangePassword(){
-		
+
+	public void showChangePassword() {
+
 	}
-	
-	public void showCloudSync(){
-		
+
+	public void showCloudSync() {
+
 	}
-	
-	public void showImport(){
-		
+
+	public void showImport() {
+
 	}
-	
-	public void showExport(){
-		
+
+	public void showExport() {
+
 	}
 
 	public void showResetScene() {
@@ -80,16 +82,22 @@ public class MainApplication extends Application {
 	}
 
 	public void showPasswordBoxScene() {
-		if (box == null) {
-			box = UIFactory.getUIFactory().getPasswordBox();
-			boxScene = new Scene(box.getObejct());
+		showMainScene();
+		if(passwordBox==null){
+			passwordBox=UIFactory.getUIFactory().getPasswordBox();
 		}
-
+		main.getController().setMainScene(passwordBox);
 		refreshPasswordBox();
-
-		showScene(boxScene);
 	}
-	
+
+	public void showMainScene() {
+		if (main == null) {
+			main = UIFactory.getUIFactory().getMainScene();
+			mainScene = new Scene(main.getObejct());
+		}
+		showScene(mainScene);
+	}
+
 	public void showPasswordItemEditorScene() {
 		if (editor == null) {
 			editor = UIFactory.getUIFactory().getPasswordItemEditor();
@@ -99,18 +107,20 @@ public class MainApplication extends Application {
 	}
 
 	public void showLastScene() {
-		if(sceneStack.isEmpty()){
+		if (sceneStack.isEmpty()) {
 			showLoginScene();
 		}
-		Scene current=sceneStack.pop();
-		if(current==sceneStack.peek()){
+		Scene current = sceneStack.pop();
+		if (current == sceneStack.peek()) {
 			showSceneOnPeek();
 		}
 		showSceneOnPeek();
 	}
-	
-	public void refreshPasswordBox(){
-		box.getController().display();
+
+	public void refreshPasswordBox() {
+		if (main.getController().getMainScene().getController() instanceof PasswordBoxController) {
+			((PasswordBoxController) main.getController().getMainScene().getController()).display();
+		}
 	}
 
 	public void showPasswordItemEditorScene(PasswordItem item) {
@@ -119,7 +129,9 @@ public class MainApplication extends Application {
 	}
 
 	private void showScene(Scene scene) {
-		sceneStack.push(scene);
+		if (sceneStack.isEmpty() || sceneStack.peek() != scene) {
+			sceneStack.push(scene);
+		}
 		showSceneOnPeek();
 	}
 

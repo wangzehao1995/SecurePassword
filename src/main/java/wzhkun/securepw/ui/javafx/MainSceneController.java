@@ -1,23 +1,12 @@
 package wzhkun.securepw.ui.javafx;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import wzhkun.securepw.bl.BLServiceManager;
-import wzhkun.securepw.bl.PasswordSafeBL;
-import wzhkun.securepw.core.PasswordItem;
 
 public class MainSceneController {
-	private Map<Pane, PasswordItemController> controllerMap = new HashMap<>();
-	private PasswordSafeBL bl = BLServiceManager.getPasswordSafeBL();
-
-	@FXML
-	private VBox box;
 
 	@FXML
 	public void add() {
@@ -26,42 +15,26 @@ public class MainSceneController {
 
 	@FXML
 	public void close() {
-		bl.setPasswordSafe(null);
+		BLServiceManager.getPasswordSafeBL().setPasswordSafe(null);
 		MainApplication.getMainApplication().showLastScene();
-	}
-
-	private void clean() {
-		box.getChildren().clear();
-		controllerMap.clear();
-	}
-
-	public void display() {
-		clean();
-		Set<PasswordItem> items = bl.getPasswordItems();
-		for (PasswordItem item : items) {
-			addPasswordItem(item);
-		}
-	}
-
-	private void addPasswordItem(PasswordItem item) {
-		ObjectAndController<Pane, PasswordItemController> itemPane = UIFactory.getUIFactory().getPasswordItemPane();
-		itemPane.getController().setPasswordItem(item);
-		controllerMap.put(itemPane.getObejct(), itemPane.getController());
-		box.getChildren().add(itemPane.getObejct());
-	}
+	}	
 
 	@FXML
 	private BorderPane borderPane;
+	
 	private Pane bar;
-	private boolean barShowed = false;
 
 	@FXML
 	public void bar() {
-		if (barShowed) {
+		if (isBarShowed()) {
 			hideBar();
 		} else {
 			showBar();
 		}
+	}
+	
+	private boolean isBarShowed(){
+		return borderPane.getLeft()!=null;
 	}
 
 	public void setBar(Pane bar) {
@@ -70,11 +43,20 @@ public class MainSceneController {
 
 	public void showBar() {
 		borderPane.setLeft(bar);
-		barShowed = true;
 	}
 
 	public void hideBar() {
 		borderPane.setLeft(null);
-		barShowed = false;
+	}
+	
+	private ObjectAndController<? extends Node, ? extends Object> mainScene;
+	
+	public void setMainScene(ObjectAndController<? extends Node, ? extends Object> mainScene){
+		this.mainScene=mainScene;
+		borderPane.setCenter(mainScene.getObejct());
+	}
+	
+	public ObjectAndController<? extends Node, ? extends Object> getMainScene(){
+		return mainScene;
 	}
 }

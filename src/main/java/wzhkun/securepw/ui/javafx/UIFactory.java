@@ -22,7 +22,7 @@ public class UIFactory {
 		return new ObjectAndController<>(getClass().getResource("Reset.fxml"));
 	}
 
-	public ObjectAndController<Parent, MainSceneController> getPasswordBox() {
+	public ObjectAndController<Parent, MainSceneController> getMainScene() {
 		ObjectAndController<Parent, MainSceneController> result= new ObjectAndController<>(getClass().getResource("MainScene.fxml"));
 		result.getController().setBar(getBar().getObejct());
 		return result;
@@ -36,7 +36,11 @@ public class UIFactory {
 		return new ObjectAndController<>(getClass().getResource("PasswordItem.fxml"));
 	}
 	
-	public ObjectAndController<Pane, BarController> getBar(){
+	public ObjectAndController<Pane, PasswordBoxController> getPasswordBox(){
+		return new ObjectAndController<>(getClass().getResource("PasswordBox.fxml"));
+	}
+	
+	private ObjectAndController<Pane, BarController> getBar(){
 		return new ObjectAndController<>(getClass().getResource("Bar.fxml"));
 	}
 }
