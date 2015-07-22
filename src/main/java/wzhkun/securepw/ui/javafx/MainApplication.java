@@ -45,6 +45,10 @@ public class MainApplication extends Application {
 		showStage();
 
 	}
+	
+	public Stage getStage(){
+		return stage;
+	}
 
 	private void showStage() {
 		stage.setWidth(cmToPx(9));
