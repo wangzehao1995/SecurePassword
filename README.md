@@ -1,5 +1,5 @@
 #SecurePassword
-<h2>You can run SecurePassword on JVM or Android</h2>
+<h2>You can run SecurePassword on JVM or Android<br>Maybe on IOS and WindowsPhone</h2>
 
 <p>SecurePassword helps you to manage your password.<br>
 Using same password at all web sites is very dangerous.<br>
