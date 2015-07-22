@@ -32,6 +32,6 @@
       <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#reset" style="-fx-base: #ee2222;" text="Reset" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" />
       <PasswordField fx:id="password" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#reset" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="6" />
       <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancel" text="Cancel" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="8" />
-      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Please input your new password.&#10;This will clean all your records!&#10;Be Careful!" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="7" GridPane.rowIndex="5" />
+      <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Please input your new password.&#10;This will clean all your records!&#10;Be Careful!&#10;&#10;&#10;" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="7" GridPane.rowSpan="6" />
    </children>
 </GridPane>

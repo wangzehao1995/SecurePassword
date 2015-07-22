@@ -11,15 +11,10 @@ public class PasswordItem implements Serializable{
 	private String password;
 	private long updateTime;
 	
-	public void delete(){
-		this.password=null;
-		updateTime=System.currentTimeMillis();
-	}
-	
-	public PasswordItem(String app,String key,String value){
+	public PasswordItem(String app,String account,String password){
 		this.app=app;
-		this.account=key;
-		this.password=value;
+		this.account=account;
+		this.password=password;
 		this.updateTime=System.currentTimeMillis();
 	}
 	
@@ -45,7 +40,6 @@ public class PasswordItem implements Serializable{
 		int result = 1;
 		result = prime * result + ((account == null) ? 0 : account.hashCode());
 		result = prime * result + ((app == null) ? 0 : app.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 
@@ -67,11 +61,6 @@ public class PasswordItem implements Serializable{
 			if (other.app != null)
 				return false;
 		} else if (!app.equals(other.app))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
 			return false;
 		return true;
 	}

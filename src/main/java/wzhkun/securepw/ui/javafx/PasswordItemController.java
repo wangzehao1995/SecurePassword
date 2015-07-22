@@ -15,7 +15,7 @@ public class PasswordItemController {
 
 	@FXML
 	public void edit(){
-		
+		MainApplication.getMainApplication().showPasswordItemEditorScene(new PasswordItem(app.getText(), account.getText(), password.getText()));
 	}
 	
 	public void setPasswordItem(PasswordItem item) {

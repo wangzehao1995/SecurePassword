@@ -9,9 +9,9 @@ public class PasswordGenerator implements Serializable{
 	private boolean 大小写混合=true;
 	private boolean 字母数字混合=true;
 	private boolean 字母符号混合=true;
-	private boolean 第一位为字母=false;
-	private boolean 至少一位为数字=false;
-	private boolean 至少一位为特殊符号=false;
+	private boolean 第一位为字母=true;
+	private boolean 至少一位为数字=true;
+	private boolean 至少一位为特殊符号=true;
 	
 	private static final String 小写字母="abcdefghijklmnopqrstuvwxyz";
 	private static final String 大写字母="ABCDEFGHIJKLMNOPQRSTUVWXYZ";

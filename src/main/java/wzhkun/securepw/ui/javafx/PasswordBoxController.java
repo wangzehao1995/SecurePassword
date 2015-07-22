@@ -1,6 +1,5 @@
 package wzhkun.securepw.ui.javafx;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,13 +20,7 @@ public class PasswordBoxController {
 	
 	@FXML
 	public void add(){
-		try {
-			bl.addPasswordItem(new PasswordItem("a", "b", "c"));
-			display();
-		} catch (IOException e) {
-			new UnableToAccessFileAlert().showAndWait();
-			e.printStackTrace();
-		}
+		MainApplication.getMainApplication().showPasswordItemEditorScene();
 	}
 	
 	@FXML
