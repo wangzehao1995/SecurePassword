@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import wzhkun.securepw.bl.BLServiceManager;
 import wzhkun.securepw.core.PasswordItem;
+import wzhkun.securepw.ui.javafx.alert.UnableToAccessFileAlert;
 
 public class PasswordItemController {
 

@@ -1,4 +1,4 @@
-package wzhkun.securepw.ui.javafx;
+package wzhkun.securepw.ui.javafx.alert;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

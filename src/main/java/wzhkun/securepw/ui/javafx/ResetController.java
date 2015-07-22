@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.ui.javafx.alert.UnableToAccessFileAlert;
 
 public class ResetController {
 

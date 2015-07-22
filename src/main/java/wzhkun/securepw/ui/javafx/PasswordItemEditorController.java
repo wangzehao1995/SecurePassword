@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import wzhkun.securepw.bl.BLServiceManager;
 import wzhkun.securepw.core.PasswordGenerator;
 import wzhkun.securepw.core.PasswordItem;
+import wzhkun.securepw.ui.javafx.alert.UnableToAccessFileAlert;
 
 public class PasswordItemEditorController implements Initializable{
 	@FXML

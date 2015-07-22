@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.ui.javafx.alert.UnableToAccessFileAlert;
 
 public class ChangePasswordController {
 	@FXML

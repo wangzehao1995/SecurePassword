@@ -5,10 +5,11 @@ import java.io.IOException;
 import javax.crypto.BadPaddingException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.ui.javafx.alert.UnableToAccessFileAlert;
+import wzhkun.securepw.ui.javafx.alert.WrongPasswordAlert;
+import wzhkun.securepw.ui.javafx.alert.WrongSafeFileAlert;
 
 public class LoginController {
 	
@@ -22,13 +23,13 @@ public class LoginController {
 			password.setText("");
 			MainApplication.getMainApplication().showPasswordBoxScene();
 		} catch (BadPaddingException e) {
-			new Alert(AlertType.ERROR,"Wrong Password").showAndWait();
+			new WrongPasswordAlert().showAndWait();
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			new Alert(AlertType.ERROR,"There's something wrong with storage file.\nTry \"reset\".").showAndWait();
+			new WrongSafeFileAlert().showAndWait();
 			e.printStackTrace();
 		} catch (IOException e) {
-			new Alert(AlertType.ERROR,"Can't read the storage file.\n"+e.getMessage()).showAndWait();
+			new UnableToAccessFileAlert().showAndWait();
 			e.printStackTrace();
 		}
 	}
