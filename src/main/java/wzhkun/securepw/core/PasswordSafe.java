@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.crypto.BadPaddingException;
 
@@ -113,9 +115,20 @@ public class PasswordSafe extends Safe<PasswordItem> {
 	public void remove(PasswordItem item) {
 		if (item != null) {
 			entities.remove(item);
-			PasswordItem deleted = new PasswordItem(item.getApp(), item.getAccount(), null);
-			entities.add(deleted);
+			item.setDeleted();
+			entities.add(item);
 		}
+	}
+	
+	@Override
+	public Set<PasswordItem> allItems() {
+		HashSet<PasswordItem> newSet=new HashSet<>();
+		for(PasswordItem item:entities){
+			if(!item.isDeleted()){
+				newSet.add(item);
+			}
+		}
+		return newSet;
 	}
 
 	private static byte[] readEncryptedBytes(File from)

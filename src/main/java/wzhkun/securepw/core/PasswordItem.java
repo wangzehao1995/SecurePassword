@@ -33,6 +33,14 @@ public class PasswordItem implements Serializable{
 	public Date getUpdateTime() {
 		return new Date(updateTime);
 	}
+	
+	public void setDeleted(){
+		this.password=null;
+	}
+	
+	public boolean isDeleted(){
+		return password==null;
+	}
 
 	@Override
 	public int hashCode() {
