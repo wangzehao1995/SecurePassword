@@ -47,7 +47,7 @@ public class PasswordBoxController {
 	}
 	
 	private void addPasswordItem(PasswordItem item){
-		ObjectAndController<Pane, PasswordItemController> itemPane=new ObjectAndController<>(getClass().getResource("PasswordItem.fxml"));
+		ObjectAndController<Pane, PasswordItemController> itemPane=UIFactory.getUIFactory().getPasswordItemPane();
 		itemPane.getController().setPasswordItem(item);
 		controllerMap.put(itemPane.getObejct(), itemPane.getController());
 		box.getChildren().add(itemPane.getObejct());

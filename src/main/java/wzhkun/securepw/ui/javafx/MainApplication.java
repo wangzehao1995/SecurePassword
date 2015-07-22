@@ -49,7 +49,7 @@ public class MainApplication extends Application {
 
 	public void showResetScene() {
 		if (reset == null) {
-			reset = new ObjectAndController<>(getClass().getResource("Reset.fxml"));
+			reset = UIFactory.getUIFactory().getReset();
 			resetScene = new Scene(reset.getObejct());
 		}
 		showScene(resetScene);
@@ -57,7 +57,7 @@ public class MainApplication extends Application {
 
 	public void showLoginScene() {
 		if (login == null) {
-			login = new ObjectAndController<>(getClass().getResource("Login.fxml"));
+			login = UIFactory.getUIFactory().getLogin();
 			loginScene = new Scene(login.getObejct());
 		}
 		showScene(loginScene);
@@ -65,7 +65,7 @@ public class MainApplication extends Application {
 
 	public void showPasswordBoxScene() {
 		if (box == null) {
-			box = new ObjectAndController<>(getClass().getResource("PasswordBox.fxml"));
+			box = UIFactory.getUIFactory().getPasswordBox();
 			boxScene = new Scene(box.getObejct());
 		}
 
@@ -76,7 +76,7 @@ public class MainApplication extends Application {
 	
 	public void showPasswordItemEditorScene() {
 		if (editor == null) {
-			editor = new ObjectAndController<>(getClass().getResource("PasswordItemEditor.fxml"));
+			editor = UIFactory.getUIFactory().getPasswordItemEditor();
 			editorScene = new Scene(editor.getObejct());
 		}
 		showScene(editorScene);
