@@ -1,7 +1,7 @@
 package wzhkun.securepw.bl;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 import wzhkun.securepw.core.PasswordItem;
 import wzhkun.securepw.core.PasswordSafe;
@@ -23,7 +23,18 @@ public class PasswordSafeBL {
 		safe.save();
 	}
 	
-	public List<PasswordItem> getPasswordItems(){
+	public void removePasswordItem(PasswordItem item) throws IOException{
+		safe.remove(item);
+		safe.save();
+	}
+	
+	public void updatePasswordItem(PasswordItem old,PasswordItem newPI) throws IOException{
+		safe.remove(old);
+		safe.add(newPI);
+		safe.save();
+	}
+	
+	public Set<PasswordItem> getPasswordItems(){
 		return safe.allItems();
 	}
 }

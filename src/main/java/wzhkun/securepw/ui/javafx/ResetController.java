@@ -22,8 +22,8 @@ public class ResetController {
 			try {
 				BLServiceManager.getResetBL().reset(password.getText());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				new UnableToAccessFileAlert().showAndWait();
 			}
 		}
 		

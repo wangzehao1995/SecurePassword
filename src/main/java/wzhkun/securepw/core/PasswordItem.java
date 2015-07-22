@@ -8,15 +8,8 @@ public class PasswordItem implements Serializable{
 
 	private final String app;
 	private final String account;
-	private transient String lastPassword;
 	private String password;
 	private long updateTime;
-	
-	public void changePassword(String newPassword){
-		this.lastPassword=this.password;
-		this.password=newPassword;
-		this.updateTime=System.currentTimeMillis();
-	}
 	
 	public void delete(){
 		this.password=null;
@@ -38,10 +31,6 @@ public class PasswordItem implements Serializable{
 		return app;
 	}
 	
-	public String getLastPassword(){
-		return lastPassword;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -55,6 +44,7 @@ public class PasswordItem implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ((app == null) ? 0 : app.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
@@ -73,6 +63,11 @@ public class PasswordItem implements Serializable{
 				return false;
 		} else if (!account.equals(other.account))
 			return false;
+		if (app == null) {
+			if (other.app != null)
+				return false;
+		} else if (!app.equals(other.app))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -80,5 +75,5 @@ public class PasswordItem implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

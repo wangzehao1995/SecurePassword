@@ -13,6 +13,11 @@ public class PasswordItemController {
 	@FXML
 	TextField password;
 
+	@FXML
+	public void edit(){
+		
+	}
+	
 	public void setPasswordItem(PasswordItem item) {
 		if (item.getApp() != null) {
 			this.app.setText(item.getApp());

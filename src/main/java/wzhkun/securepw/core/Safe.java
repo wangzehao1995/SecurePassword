@@ -6,16 +6,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.crypto.BadPaddingException;
 
 public class Safe <T extends Serializable> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	protected final List<T> entities = new ArrayList<>();
+	protected final Set<T> entities = new HashSet<>();
 
 	private transient Encryptor encryptor;
 
@@ -56,8 +57,8 @@ public class Safe <T extends Serializable> implements Serializable {
 		entities.remove(item);
 	}
 
-	public List<T> allItems() {
-		return Collections.unmodifiableList(entities);
+	public Set<T> allItems() {
+		return Collections.unmodifiableSet(entities);
 	}
 
 	byte[] encrypt() {

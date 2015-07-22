@@ -2,8 +2,8 @@ package wzhkun.securepw.ui.javafx;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -25,7 +25,7 @@ public class PasswordBoxController {
 			bl.addPasswordItem(new PasswordItem("a", "b", "c"));
 			display();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			new UnableToAccessFileAlert().showAndWait();
 			e.printStackTrace();
 		}
 	}
@@ -47,7 +47,7 @@ public class PasswordBoxController {
 	
 	public void display(){
 		clean();
-		List<PasswordItem> items=bl.getPasswordItems();
+		Set<PasswordItem> items=bl.getPasswordItems();
 		for(PasswordItem item:items){
 			addPasswordItem(item);
 		}
