@@ -11,18 +11,21 @@ public class BarController {
 
 	@FXML
 	public void changePassword() {
-		MainApplication.getMainApplication().showChangePasswordScene();
+		MainApplication.getMainApplication().showChangePassword();
 	}
 
 	@FXML
 	public void cloudSync() {
+		MainApplication.getMainApplication().showCloudSync();
 	}
 
 	@FXML
 	public void import_() {
+		MainApplication.getMainApplication().showImport();
 	}
 
 	@FXML
 	public void export() {
+		MainApplication.getMainApplication().showExport();
 	}
 }

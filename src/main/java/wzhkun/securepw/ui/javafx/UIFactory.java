@@ -47,4 +47,12 @@ public class UIFactory {
 	public ObjectAndController<Pane, ChangePasswordController> getChangePassword(){
 		return new ObjectAndController<>(getClass().getResource("ChangePassword.fxml"));
 	}
+	
+	public ObjectAndController<Pane, ImportController> getImport(){
+		return new ObjectAndController<>(getClass().getResource("Import.fxml"));
+	}
+	
+	public ObjectAndController<Pane, ExportController> getExport(){
+		return new ObjectAndController<>(getClass().getResource("Export.fxml"));
+	}
 }

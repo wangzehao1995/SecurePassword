@@ -32,6 +32,8 @@ public class MainApplication extends Application {
 	private ObjectAndController<Parent, PasswordItemEditorController> editor;
 	private ObjectAndController<Pane, PasswordBoxController> passwordBox;
 	private ObjectAndController<Pane, ChangePasswordController> changePassword;
+	private ObjectAndController<Pane, ImportController> import_;
+	private ObjectAndController<Pane, ExportController> export;
 	private Stack<Scene> sceneStack = new Stack<>();
 
 	@Override
@@ -48,22 +50,6 @@ public class MainApplication extends Application {
 		stage.setWidth(cmToPx(9));
 		stage.setHeight(cmToPx(16));
 		stage.show();
-	}
-
-	public void showChangePassword() {
-
-	}
-
-	public void showCloudSync() {
-
-	}
-
-	public void showImport() {
-
-	}
-
-	public void showExport() {
-
 	}
 
 	public void showResetScene() {
@@ -91,12 +77,32 @@ public class MainApplication extends Application {
 		refreshPasswordBox();
 	}
 	
-	public void showChangePasswordScene(){
+	public void showChangePassword(){
 		showMainScene();
 		if(changePassword==null){
 			changePassword=UIFactory.getUIFactory().getChangePassword();
 		}
 		main.getController().setMainScene(changePassword);
+	}
+	
+	public void showCloudSync() {
+
+	}
+
+	public void showImport() {
+		showMainScene();
+		if(import_==null){
+			import_=UIFactory.getUIFactory().getImport();
+		}
+		main.getController().setMainScene(import_);
+	}
+
+	public void showExport() {
+		showMainScene();
+		if(export==null){
+			export=UIFactory.getUIFactory().getExport();
+		}
+		main.getController().setMainScene(export);
 	}
 
 	public void showMainScene() {
