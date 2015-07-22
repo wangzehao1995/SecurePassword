@@ -27,7 +27,7 @@ public class MainApplication extends Application {
 	private Scene editorScene;
 	private ObjectAndController<Parent, LoginController> login;
 	private ObjectAndController<Parent, ResetController> reset;
-	private ObjectAndController<Parent, PasswordBoxController> box;
+	private ObjectAndController<Parent, MainSceneController> box;
 	private ObjectAndController<Parent, PasswordItemEditorController> editor;
 	private Stack<Scene> sceneStack = new Stack<>();
 
@@ -45,6 +45,22 @@ public class MainApplication extends Application {
 		stage.setWidth(cmToPx(9));
 		stage.setHeight(cmToPx(16));
 		stage.show();
+	}
+	
+	public void showChangePassword(){
+		
+	}
+	
+	public void showCloudSync(){
+		
+	}
+	
+	public void showImport(){
+		
+	}
+	
+	public void showExport(){
+		
 	}
 
 	public void showResetScene() {
