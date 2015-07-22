@@ -12,7 +12,7 @@ import java.util.Set;
 
 import javax.crypto.BadPaddingException;
 
-public class PasswordSafe extends Safe<PasswordItem> {
+public class PasswordSafe extends Safe<PasswordItem> implements Cloneable{
 
 	private PasswordSafe(String password) {
 		super(password);
@@ -70,14 +70,44 @@ public class PasswordSafe extends Safe<PasswordItem> {
 	 * 
 	 * @param from
 	 * @param password
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
+	 * @throws BadPaddingException 
 	 * @throws Exception
 	 *             Can't read file
 	 */
-	public void importFromFile(File from, String password) throws Exception {
+	public void importFromFile(File from, String password) throws BadPaddingException, ClassNotFoundException, IOException {
 		PasswordSafe safe = readFromFile(from, password);
 		importFromSafe(safe);
 	}
-
+	
+	/**
+	 * Use My Password
+	 * @param from
+	 * @throws BadPaddingException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	public void importFromFile(File from) throws BadPaddingException, ClassNotFoundException, IOException {
+		PasswordSafe safe = readFromFile(from, this);
+		importFromSafe(safe);
+	}
+	
+	public void export(File to) throws IOException{
+		saveToFile(to);
+	}
+	
+	public void export(File to,String newPassword) throws IOException{
+		PasswordSafe clone;
+		try {
+			clone = (PasswordSafe) this.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+		clone.changePassword(newPassword);
+		clone.saveToFile(to);
+	}
+	
 	/**
 	 * 
 	 * @param file
