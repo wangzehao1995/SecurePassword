@@ -50,10 +50,12 @@ public class PasswordSafeBL {
 	 */
 	public void import_(File from) throws BadPaddingException, ClassNotFoundException, IOException {
 		safe.importFromFile(from);
+		safe.save();
 	}
 
 	public void import_(File from, String password) throws BadPaddingException, ClassNotFoundException, IOException {
 		safe.importFromFile(from, password);
+		safe.save();
 	}
 
 	/**
