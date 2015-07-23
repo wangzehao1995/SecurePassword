@@ -118,7 +118,7 @@ public class PasswordSafe extends Safe<PasswordItem> implements Cloneable{
 	 * @throws Exception
 	 *             Can't read or write file
 	 */
-	public void synchronizeFromFile(File file)
+	public void synchronizeWithFile(File file)
 			throws BadPaddingException, ClassNotFoundException, FileNotFoundException, IOException {
 		PasswordSafe safe = readFromFile(file, this);
 		synchronize(safe);
@@ -185,18 +185,19 @@ public class PasswordSafe extends Safe<PasswordItem> implements Cloneable{
 	}
 
 	private void importFromSafe(PasswordSafe safe) {
+		NextItem:
 		for (PasswordItem item : safe.allItems()) {
-			if (entities.contains(item)) {
-				return;
-			}
 			for (PasswordItem myItem : entities) {
-				if (myItem.getAccount().equals(item.getAccount())) {
+				if (myItem.equals(item)) {
 					if (myItem.getUpdateTime().before(item.getUpdateTime())) {
 						entities.remove(myItem);
 						entities.add(item);
+						continue NextItem;
 					}
 				}
 			}
+			
+			add(item);
 		}
 	}
 
