@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SecurePassword.iml" filepath="$PROJECT_DIR$/SecurePassword.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SecurePasswordAndroid.iml" filepath="$PROJECT_DIR$/SecurePasswordAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
