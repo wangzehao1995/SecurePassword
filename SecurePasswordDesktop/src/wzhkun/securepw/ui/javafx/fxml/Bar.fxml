@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wzhkun.securepw.ui.javafx.BarController">
+   <children>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#safeBox" text="Safe Box" wrapText="true" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changePassword" text="Change Password" wrapText="true" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cloudSync" text="Cloud Sync" wrapText="true" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#import_" text="Import" wrapText="true" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#export" text="Export" wrapText="true" />
+   </children>
+</VBox>
