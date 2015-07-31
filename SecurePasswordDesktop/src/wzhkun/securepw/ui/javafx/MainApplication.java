@@ -27,7 +27,7 @@ public class MainApplication extends Application {
 	public static final File LOCAL_SAFE=new File("password.safe");
 	public static final File SETTING_FILE=new File("securepw.setting");
 	{
-		BLServiceManager.getSettingBL().setSettingFile(SETTING_FILE);
+		BLServiceManager.getSettingBL().setSettingFile(MyFile.toMyFile(SETTING_FILE));
 		BLServiceManager.getPasswordSafeBL().setLocalFile(MyFile.toMyFile(LOCAL_SAFE));
 	}
 

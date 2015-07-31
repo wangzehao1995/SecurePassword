@@ -1,8 +1,5 @@
 package wzhkun.securepw.bl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -37,11 +34,11 @@ public class SettingBL {
 
 	private Entity entity ;
 
-	private File settingFile;
+	private MyFile settingFile;
 
 	private static final String SYNC_FILE = "SYNC_FILE";
 	
-	public void setSettingFile(File file){
+	public void setSettingFile(MyFile file){
 		settingFile=file;
 	}
 
@@ -63,7 +60,7 @@ public class SettingBL {
 		if(settingFile==null){
 			throw new RuntimeException("Wrong Object State");
 		}
-		try (ObjectInputStream decoder = new ObjectInputStream(new FileInputStream(settingFile));) {
+		try (ObjectInputStream decoder = new ObjectInputStream(settingFile.getInputStream());) {
 			return (Entity) decoder.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +69,7 @@ public class SettingBL {
 	}
 
 	private void saveEntity() throws IOException {
-		ObjectOutputStream encoder = new ObjectOutputStream(new FileOutputStream(settingFile));
+		ObjectOutputStream encoder = new ObjectOutputStream(settingFile.getOutputStream());
 		encoder.writeObject(entity);
 		encoder.close();
 	}
