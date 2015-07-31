@@ -31,4 +31,13 @@
         android:layout_below="@+id/reset_reset"
         android:layout_centerHorizontal="true"
         android:onClick="cancel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Please input your new password.\nThis will clean all your records!\nBe Careful!"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/reset_password"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
