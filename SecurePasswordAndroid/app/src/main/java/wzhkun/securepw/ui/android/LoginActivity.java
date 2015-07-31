@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 
@@ -25,8 +26,10 @@ import wzhkun.securepw.ui.android.alert.WrongSafeFileAlert;
 public class LoginActivity extends Activity {
     PasswordSafeBL bl;
     EditText password;
-    private final MyFile localSafe=makeMyFile("password.safe");
-    private final MyFile settingFile=makeMyFile("securepw.setting");
+    private final String localSafeFileName="password.safe";
+    private final MyFile localSafe=makeMyFile(localSafeFileName);
+    private final String settingFileName = "securepw.setting";
+    private final MyFile settingFile=makeMyFile(settingFileName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class LoginActivity extends Activity {
 
     public void login(View view){
         try {
+            if(firstTimeLogin()){
+                bl.reset(String.valueOf(password.getText()));
+            }
             bl.login(String.valueOf(password.getText()));
             clear();
             Intent intent = new Intent();
@@ -69,7 +75,11 @@ public class LoginActivity extends Activity {
         password.setText("");
     }
 
-    private MyFile makeMyFile(String fileName){
+    private boolean firstTimeLogin(){
+        return !Arrays.asList(fileList()).contains(localSafeFileName);
+    }
+
+    private MyFile makeMyFile(final String fileName){
         MyFile result=new MyFile();
         result.setInputStream(new IOStreamSupplier<InputStream>() {
             @Override
