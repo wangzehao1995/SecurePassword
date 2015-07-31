@@ -2,12 +2,15 @@ package wzhkun.securepw.ui.javafx;
 
 import static wzhkun.securepw.ui.javafx.DPIFormatter.*;
 
+import java.io.File;
 import java.util.Stack;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.bl.MyFile;
 import wzhkun.securepw.core.PasswordItem;
 
 public class MainApplication extends Application {
@@ -19,6 +22,13 @@ public class MainApplication extends Application {
 
 	public static void main(String[] args) {
 		Application.launch(MainApplication.class);
+	}
+	
+	public static final File LOCAL_SAFE=new File("password.safe");
+	public static final File SETTING_FILE=new File("securepw.setting");
+	{
+		BLServiceManager.getSettingBL().setSettingFile(SETTING_FILE);
+		BLServiceManager.getPasswordSafeBL().setLocalFile(MyFile.toMyFile(LOCAL_SAFE));
 	}
 
 	private Stage stage;

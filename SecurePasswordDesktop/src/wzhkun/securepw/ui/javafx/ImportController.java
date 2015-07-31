@@ -8,6 +8,7 @@ import javax.crypto.BadPaddingException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.bl.MyFile;
 
 public class ImportController extends ImportOrExportController{
 
@@ -18,13 +19,13 @@ public class ImportController extends ImportOrExportController{
 	
 	@Override
 	protected void doItWithMyPassword(File file) throws BadPaddingException, ClassNotFoundException, IOException {
-		BLServiceManager.getPasswordSafeBL().import_(file);
+		BLServiceManager.getPasswordSafeBL().import_(MyFile.toMyFile(file));
 	}
 
 	@Override
 	protected void doItWithNewPassword(File file, String password)
 			throws BadPaddingException, ClassNotFoundException, IOException {
-		BLServiceManager.getPasswordSafeBL().import_(file, password);
+		BLServiceManager.getPasswordSafeBL().import_(MyFile.toMyFile(file), password);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package wzhkun.securepw.bl;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
@@ -11,6 +10,8 @@ import wzhkun.securepw.core.PasswordSafe;
 
 public class PasswordSafeBL {
 	private PasswordSafe safe;
+	private MyFile syncSafeFile;
+	private MyFile localSafeFile;
 
 	public void setPasswordSafe(PasswordSafe safe) {
 		this.safe = safe;
@@ -18,6 +19,17 @@ public class PasswordSafeBL {
 
 	public PasswordSafe getPasswordSafe() {
 		return safe;
+	}
+	
+	public void login(String password) throws BadPaddingException, ClassNotFoundException, IOException {
+		PasswordSafe safe = PasswordSafe.getSafe(localSafeFile.getInputStream(),password);
+		BLServiceManager.getPasswordSafeBL().setPasswordSafe(safe);
+	}
+	
+	public void reset(String password) throws IOException {
+		PasswordSafe safe = PasswordSafe.newSafe(password);
+		BLServiceManager.getPasswordSafeBL().setPasswordSafe(safe);
+		safe.save(localSafeFile.getOutputStream());
 	}
 
 	public void addPasswordItem(PasswordItem item) throws IOException {
@@ -48,41 +60,48 @@ public class PasswordSafeBL {
 	/**
 	 * use my password
 	 */
-	public void import_(File from) throws BadPaddingException, ClassNotFoundException, IOException {
-		safe.importFromFile(from);
+	public void import_(MyFile from) throws BadPaddingException, ClassNotFoundException, IOException {
+		safe.import_(from.getInputStream());
 		save();
 	}
 
-	public void import_(File from, String password) throws BadPaddingException, ClassNotFoundException, IOException {
-		safe.importFromFile(from, password);
+	public void import_(MyFile from, String password) throws BadPaddingException, ClassNotFoundException, IOException {
+		safe.import_(from.getInputStream(), password);
 		save();
 	}
 
 	/**
 	 * use my password
 	 */
-	public void export(File to) throws IOException {
-		safe.export(to);
+	public void export(MyFile to) throws IOException {
+		safe.export(to.getOutputStream());
 	}
 
-	public void export(File to, String password) throws IOException {
-		safe.export(to, password);
+	public void export(MyFile to, String password) throws IOException {
+		safe.export(to.getOutputStream(), password);
 	}
 
-	private File syncFile;
+	
 
-	public void setSyncFile(File file) {
-		syncFile = file;
+	public void setSyncFile(MyFile file) {
+		syncSafeFile = file;
+	}
+	
+	public void setLocalFile(MyFile file){
+		localSafeFile=file;
 	}
 
 	public void sync() throws BadPaddingException, ClassNotFoundException, IOException {
-		if (syncFile != null) {
-			safe.synchronizeWithFile(syncFile);
+		if (syncSafeFile != null) {
+			PasswordSafe target=PasswordSafe.getSafe(syncSafeFile.getInputStream(), safe);
+			safe.synchronize(target);
+			safe.save(localSafeFile.getOutputStream());
+			target.save(syncSafeFile.getOutputStream());
 		}
 	}
 
 	private void save() throws IOException {
-		safe.save();
+		safe.save(localSafeFile.getOutputStream());
 		try {
 			sync();
 		} catch (BadPaddingException | ClassNotFoundException | IOException e) {

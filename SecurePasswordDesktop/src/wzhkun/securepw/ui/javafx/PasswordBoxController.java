@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.bl.MyFile;
 import wzhkun.securepw.core.PasswordItem;
 
 public class PasswordBoxController implements Initializable{
@@ -37,6 +38,6 @@ public class PasswordBoxController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		BLServiceManager.getPasswordSafeBL().setSyncFile(new File(BLServiceManager.getSettingBL().getSyncFilePath()));
+		BLServiceManager.getPasswordSafeBL().setSyncFile(MyFile.toMyFile(new File(BLServiceManager.getSettingBL().getSyncFilePath())));
 	}
 }

@@ -19,7 +19,10 @@ public class LoginController {
 	@FXML
 	public void login(){
 		try {
-			BLServiceManager.getLoginBL().login(password.getText());
+			if(!MainApplication.LOCAL_SAFE.exists()){
+				BLServiceManager.getPasswordSafeBL().reset(password.getText());
+			}
+			BLServiceManager.getPasswordSafeBL().login(password.getText());
 			password.setText("");
 			MainApplication.getMainApplication().showPasswordBoxScene();
 		} catch (BadPaddingException e) {

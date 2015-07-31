@@ -21,7 +21,7 @@ public class ResetController {
 		
 		if (result==ButtonType.OK){
 			try {
-				BLServiceManager.getResetBL().reset(password.getText());
+				BLServiceManager.getPasswordSafeBL().reset(password.getText());
 			} catch (IOException e) {
 				e.printStackTrace();
 				new UnableToAccessFileAlert().showAndWait();

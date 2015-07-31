@@ -1,7 +1,7 @@
 package wzhkun.securepw.ui.javafx;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,7 +36,7 @@ public class SyncController implements Initializable{
 	public void setPath(){
 		try {
 			bl.setSyncFilePath(filePath.getText());
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			new UnableToAccessFileAlert().showAndWait();
 		}
 	}

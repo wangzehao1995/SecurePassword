@@ -1,11 +1,11 @@
 package wzhkun.securepw.bl;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
@@ -35,18 +35,22 @@ public class SettingBL {
 		}
 	}
 
-	private Entity entity = readEntity();
+	private Entity entity ;
 
-	private static final File SETTING_FILE = new File("securepw.setting");
+	private File settingFile;
 
 	private static final String SYNC_FILE = "SYNC_FILE";
+	
+	public void setSettingFile(File file){
+		settingFile=file;
+	}
 
 	public String getSyncFilePath() {
 		refreshEntity();
 		return entity.get(SYNC_FILE);
 	}
 
-	public void setSyncFilePath(String path) throws FileNotFoundException {
+	public void setSyncFilePath(String path) throws IOException {
 		entity.put(SYNC_FILE, path);
 		saveEntity();
 	}
@@ -56,7 +60,10 @@ public class SettingBL {
 	}
 
 	private Entity readEntity() {
-		try (XMLDecoder decoder = new XMLDecoder(new FileInputStream(SETTING_FILE));) {
+		if(settingFile==null){
+			throw new RuntimeException("Wrong Object State");
+		}
+		try (ObjectInputStream decoder = new ObjectInputStream(new FileInputStream(settingFile));) {
 			return (Entity) decoder.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,8 +71,8 @@ public class SettingBL {
 		}
 	}
 
-	private void saveEntity() throws FileNotFoundException {
-		XMLEncoder encoder = new XMLEncoder(new FileOutputStream(SETTING_FILE));
+	private void saveEntity() throws IOException {
+		ObjectOutputStream encoder = new ObjectOutputStream(new FileOutputStream(settingFile));
 		encoder.writeObject(entity);
 		encoder.close();
 	}
