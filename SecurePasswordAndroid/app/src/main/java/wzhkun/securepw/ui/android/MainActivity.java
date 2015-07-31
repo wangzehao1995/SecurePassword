@@ -55,4 +55,8 @@ public class MainActivity extends Activity {
     public void showExport(MenuItem item) {
 
     }
+
+    public void lock(MenuItem item){
+        System.exit(0);
+    }
 }

@@ -10,4 +10,6 @@
     <string name="cloudsync">Cloud Sync</string>
     <string name="import_">Import</string>
     <string name="export">Export</string>
+    <string name="exit">Exit</string>
+    <string name="lock">Lock</string>
 </resources>

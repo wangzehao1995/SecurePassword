@@ -31,4 +31,10 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/export" />
+    <item
+        android:id="@+id/main_menu_lock"
+        android:onClick="lock"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/lock" />
 </menu>

@@ -39,7 +39,11 @@ public class LoginActivity extends Activity {
         bl= BLServiceManager.getPasswordSafeBL();
         password= (EditText) findViewById(R.id.login_password);
 
-        bl.setLocalFile(localSafe);
+        initApplication();
+    }
+
+    private void initApplication(){
+        BLServiceManager.getPasswordSafeBL().setLocalFile(localSafe);
         BLServiceManager.getSettingBL().setSettingFile(settingFile);
     }
 
