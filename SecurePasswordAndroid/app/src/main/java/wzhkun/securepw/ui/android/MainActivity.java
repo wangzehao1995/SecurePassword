@@ -1,6 +1,7 @@
 package wzhkun.securepw.ui.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +36,9 @@ public class MainActivity extends Activity {
     }
 
     public void add(View view) {
-
+        Intent intent = new Intent();
+        intent.setClass(this, EditActivity.class);
+        this.startActivity(intent);
     }
 
     public void sync(View view) {
