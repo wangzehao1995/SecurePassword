@@ -2,6 +2,8 @@ package wzhkun.securepw.ui.android.alert;
 
 import android.content.Context;
 
+import wzhkun.securepw.R;
+
 /**
  * Created by wangzehao on 2015/7/30.
  */
@@ -12,6 +14,6 @@ public class WrongSafeFileAlert extends MyAlert{
 
     @Override
     public void show() {
-        getBuilder().setMessage("There's something wrong with storage file.\nTry \"reset\".");
+        getBuilder().setMessage(R.string.wrong_safe_file).setNeutralButton(R.string.confirm,null).show();
     }
 }
