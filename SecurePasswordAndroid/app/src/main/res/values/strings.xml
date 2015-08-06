@@ -2,14 +2,16 @@
     <string name="app_name">Secure Password</string>
 
     <string name="hello_world">Hello world</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_reset">Reset</string>
-    <string name="safebox">Safe Box</string>
-    <string name="changepassword">Change Password</string>
-    <string name="cloudsync">Cloud Sync</string>
-    <string name="import_">Import</string>
-    <string name="export">Export</string>
-    <string name="exit">Exit</string>
-    <string name="lock">Lock</string>
+    <string name="title_activity_reset">重置</string>
+    <string name="safebox">密码箱</string>
+    <string name="changepassword">修改密码</string>
+    <string name="cloudsync">云同步</string>
+    <string name="import_">导入</string>
+    <string name="export">导出</string>
+    <string name="exit">退出</string>
+    <string name="lock">锁定</string>
+    <string name="copy_to_clipboard">已复制到剪贴板</string>
+    <string name="double_click_to_copy">双击复制到剪贴板</string>
 </resources>
