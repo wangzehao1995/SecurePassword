@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".ui.android.ResetActivity"
-            android:label="@string/title_activity_reset" >
+            android:label="@string/reset" >
         </activity>
     </application>
 

@@ -17,7 +17,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/login_login"
         android:layout_below="@+id/login_password"
         android:layout_centerHorizontal="true"
@@ -26,7 +26,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="@string/reset"
         android:id="@+id/login_reset"
         android:layout_below="@+id/login_login"
         android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Please input your password\nIf this is your first time to login\nyour password will be setted"
+        android:text="@string/login_guide"
         android:id="@+id/textView"
         android:layout_above="@+id/login_password"
         android:layout_centerHorizontal="true"

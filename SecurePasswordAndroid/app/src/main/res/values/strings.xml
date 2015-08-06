@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">Secure Password</string>
-
-    <string name="hello_world">Hello world</string>
     <string name="action_settings">设置</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_reset">重置</string>
+    <string name="reset">重置</string>
     <string name="safebox">密码箱</string>
     <string name="changepassword">修改密码</string>
     <string name="cloudsync">云同步</string>
@@ -14,4 +12,13 @@
     <string name="lock">锁定</string>
     <string name="copy_to_clipboard">已复制到剪贴板</string>
     <string name="double_click_to_copy">双击复制到剪贴板</string>
+    <string name="login">登录</string>
+    <string name="login_guide">请输入您的密码\n如果这是您第一次登录\n您的密码将会被设置</string>
+    <string name="cancel">取消</string>
+    <string name="reset_guide">请输入您的新密码\n这将清空您所有的密码</string>
+    <string name="edit">编辑</string>
+    <string name="app">应用:</string>
+    <string name="acount">账户:</string>
+    <string name="password">密码:</string>
+    <string name="sync">同步</string>
 </resources>

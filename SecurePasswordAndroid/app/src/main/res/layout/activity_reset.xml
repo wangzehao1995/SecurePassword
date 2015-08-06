@@ -17,7 +17,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="@string/reset"
         android:id="@+id/reset_reset"
         android:layout_below="@+id/reset_password"
         android:layout_centerHorizontal="true"
@@ -26,7 +26,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:id="@+id/cancel"
         android:layout_below="@+id/reset_reset"
         android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Please input your new password.\nThis will clean all your records!\nBe Careful!"
+        android:text="@string/reset_guide"
         android:id="@+id/textView2"
         android:layout_above="@+id/reset_password"
         android:layout_centerHorizontal="true" />
