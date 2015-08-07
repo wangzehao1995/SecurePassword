@@ -21,18 +21,19 @@ public class PasswordItemView {
     private ViewGroup view;
     private PasswordItem item;
     private Context context;
-    public PasswordItemView(final Context context,PasswordItem item){
+
+    public PasswordItemView(final Context context, PasswordItem item) {
         LayoutInflater iInflater = LayoutInflater.from(context);
 
         this.view = (ViewGroup) iInflater.inflate(R.layout.password_item, null);
-        this.item=item;
-        this.context=context;
+        this.item = item;
+        this.context = context;
 
-        Button edit= (Button) view.getChildAt(0);
-        final Button delete= (Button) view.getChildAt(1);
-        EditText app= (EditText) view.getChildAt(3);
-        EditText account= (EditText) view.getChildAt(5);
-        EditText password= (EditText) view.getChildAt(7);
+        Button edit = (Button) view.getChildAt(0);
+        final Button delete = (Button) view.getChildAt(1);
+        EditText app = (EditText) view.getChildAt(3);
+        EditText account = (EditText) view.getChildAt(5);
+        EditText password = (EditText) view.getChildAt(7);
 
         setOnClickCopy(app);
         setOnClickCopy(account);
@@ -56,18 +57,18 @@ public class PasswordItemView {
         });
     }
 
-    private void edit(){
+    private void edit() {
     }
 
-    private void delete(){
+    private void delete() {
 
     }
 
-    public View getView(){
+    public View getView() {
         return view;
     }
 
-    private void setOnClickCopy(final EditText et){
+    private void setOnClickCopy(final EditText et) {
         et.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,11 +9,11 @@ import android.content.Context;
 public abstract class MyAlert {
     private Context context;
 
-    public MyAlert(Context context){
-        this.context=context;
+    public MyAlert(Context context) {
+        this.context = context;
     }
 
-    protected AlertDialog.Builder getBuilder(){
+    protected AlertDialog.Builder getBuilder() {
         return new AlertDialog.Builder(context);
     }
 

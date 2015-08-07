@@ -22,11 +22,11 @@ public class ResetActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset);
 
-        password= (EditText) findViewById(R.id.reset_password);
-        bl= BLServiceManager.getPasswordSafeBL();
+        password = (EditText) findViewById(R.id.reset_password);
+        bl = BLServiceManager.getPasswordSafeBL();
     }
 
-    public void reset(View view){
+    public void reset(View view) {
         try {
             bl.reset(String.valueOf(password.getText()));
             clear();
@@ -37,11 +37,11 @@ public class ResetActivity extends Activity {
         }
     }
 
-    public void cancel(View view){
+    public void cancel(View view) {
         this.finish();
     }
 
-    private void clear(){
+    private void clear() {
         password.setText("");
     }
 }

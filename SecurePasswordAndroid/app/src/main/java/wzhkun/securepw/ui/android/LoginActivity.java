@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,32 +23,32 @@ import wzhkun.securepw.ui.android.alert.WrongPasswordAlert;
 import wzhkun.securepw.ui.android.alert.WrongSafeFileAlert;
 
 public class LoginActivity extends Activity {
+    private final String localSafeFileName = "password.safe";
+    private final MyFile localSafe = makeMyFile(localSafeFileName);
+    private final String settingFileName = "securepw.setting";
+    private final MyFile settingFile = makeMyFile(settingFileName);
     PasswordSafeBL bl;
     EditText password;
-    private final String localSafeFileName="password.safe";
-    private final MyFile localSafe=makeMyFile(localSafeFileName);
-    private final String settingFileName = "securepw.setting";
-    private final MyFile settingFile=makeMyFile(settingFileName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        bl= BLServiceManager.getPasswordSafeBL();
-        password= (EditText) findViewById(R.id.login_password);
+        bl = BLServiceManager.getPasswordSafeBL();
+        password = (EditText) findViewById(R.id.login_password);
 
         initApplication();
     }
 
-    private void initApplication(){
+    private void initApplication() {
         BLServiceManager.getPasswordSafeBL().setLocalFile(localSafe);
         BLServiceManager.getSettingBL().setSettingFile(settingFile);
     }
 
-    public void login(View view){
+    public void login(View view) {
         try {
-            if(firstTimeLogin()){
+            if (firstTimeLogin()) {
                 bl.reset(String.valueOf(password.getText()));
             }
             bl.login(String.valueOf(password.getText()));
@@ -69,22 +68,22 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void reset(View view){
+    public void reset(View view) {
         Intent intent = new Intent();
         intent.setClass(this, ResetActivity.class);
         this.startActivity(intent);
     }
 
-    private void clear(){
+    private void clear() {
         password.setText("");
     }
 
-    private boolean firstTimeLogin(){
+    private boolean firstTimeLogin() {
         return !Arrays.asList(fileList()).contains(localSafeFileName);
     }
 
-    private MyFile makeMyFile(final String fileName){
-        MyFile result=new MyFile();
+    private MyFile makeMyFile(final String fileName) {
+        MyFile result = new MyFile();
         result.setInputStream(new IOStreamSupplier<InputStream>() {
             @Override
             public InputStream get() throws IOException {
@@ -94,7 +93,7 @@ public class LoginActivity extends Activity {
         result.setOutputStream(new IOStreamSupplier<OutputStream>() {
             @Override
             public OutputStream get() throws IOException {
-                return openFileOutput(fileName,MODE_PRIVATE);
+                return openFileOutput(fileName, MODE_PRIVATE);
             }
         });
         return result;

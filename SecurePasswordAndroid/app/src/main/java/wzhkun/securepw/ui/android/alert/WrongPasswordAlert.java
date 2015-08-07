@@ -7,7 +7,7 @@ import wzhkun.securepw.R;
 /**
  * Created by wangzehao on 2015/7/30.
  */
-public class WrongPasswordAlert extends MyAlert{
+public class WrongPasswordAlert extends MyAlert {
     public WrongPasswordAlert(Context context) {
         super(context);
     }

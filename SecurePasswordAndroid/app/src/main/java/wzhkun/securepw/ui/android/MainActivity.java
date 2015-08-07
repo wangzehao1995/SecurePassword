@@ -50,22 +50,22 @@ public class MainActivity extends Activity {
     }
 
     public void showSafeBox(MenuItem item) {
-        if(passwordBox==null){
-            passwordBox=PasswordBox.newBox(this);
+        if (passwordBox == null) {
+            passwordBox = PasswordBox.newBox(this);
         }
         frame.removeAllViews();
         frame.addView(passwordBox);
         loadPasswordItems();
     }
 
-    private void loadPasswordItems(){
+    private void loadPasswordItems() {
         passwordBox.removeAllViews();
-        TextView doubleClickToCopyLabel=new TextView(this);
+        TextView doubleClickToCopyLabel = new TextView(this);
         doubleClickToCopyLabel.setText(R.string.double_click_to_copy);
         passwordBox.addView(doubleClickToCopyLabel);
-        PasswordItem item=new PasswordItem("app","account","pw");
-        passwordBox.addView(new PasswordItemView(this,item).getView());
-        passwordBox.addView(new PasswordItemView(this,item).getView());
+        PasswordItem item = new PasswordItem("app", "account", "pw");
+        passwordBox.addView(new PasswordItemView(this, item).getView());
+        passwordBox.addView(new PasswordItemView(this, item).getView());
     }
 
     public void showChangePassword(MenuItem item) {
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 
     }
 
-    public void lock(MenuItem item){
+    public void lock(MenuItem item) {
         System.exit(0);
     }
 }

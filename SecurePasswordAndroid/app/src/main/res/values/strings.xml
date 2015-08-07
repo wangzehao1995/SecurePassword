@@ -37,4 +37,5 @@
     <string name="first_char_letter">首位是字母</string>
     <string name="at_least_one_number">至少一个数字</string>
     <string name="at_least_one_symbol">至少一个符号</string>
+    <string name="wrong_length">长度错误</string>
 </resources>
