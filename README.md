@@ -18,7 +18,7 @@
 <p>
 本软件用java开发<BR><BR>
 Desktop版本需要JRE 8以上<BR><BR>
-Android版本需要4.0+(SDK15+)(暂时完成了基本功能)
+Android版本需要4.0+(SDK15+)(暂时只完成了基本功能)
 </p>
 <h3>开源协议</h3>
 <a target="_blank" href="http://www.gnu.org/licenses/gpl.html"><BR/>
@@ -26,12 +26,12 @@ GPL
 </a>
 <h3>界面预览</h3>
 <h4>登录界面</h4>
-![](/readme/login.PNG)
+![](/readme/login.PNG)![](/readme/logina.png)
 <h4>密码箱</h4>
-![](/readme/box.PNG)
+![](/readme/box.PNG)![](/readme/boxa.png)
 <h4>创建新的密码</h4>
-![](/readme/editor.PNG)
+![](/readme/editor.PNG)![](/readme/editora.png)
 <h4>菜单</h4>
-![](/readme/menu.PNG)
+![](/readme/menu.PNG)![](/readme/menua.png)
 <h4>导入/导出密码文件</h4>
 ![](/readme/import.PNG)
