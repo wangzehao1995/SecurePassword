@@ -18,7 +18,6 @@ import wzhkun.securepw.R;
 import wzhkun.securepw.bl.BLServiceManager;
 import wzhkun.securepw.core.PasswordItem;
 import wzhkun.securepw.ui.android.alert.UnableToAccessFileAlert;
-import wzhkun.securepw.ui.android.alert.WrongPasswordAlert;
 
 /**
  * Created by wangzehao on 2015/8/3.

@@ -62,8 +62,7 @@ public class MainActivity extends Activity {
         if (passwordBox == null) {
             passwordBox = PasswordBox.newBox(this);
         }
-        frame.removeAllViews();
-        frame.addView(passwordBox);
+        showView(passwordBox);
         reloadPasswordItems();
     }
 
@@ -92,14 +91,19 @@ public class MainActivity extends Activity {
     }
 
     public void showImport(MenuItem item) {
-
+        showView(Imexport.getImport(this));
     }
 
     public void showExport(MenuItem item) {
-
+        showView(Imexport.getExport(this));
     }
 
     public void lock(MenuItem item) {
         System.exit(0);
+    }
+
+    private void showView(View view){
+        frame.removeAllViews();
+        frame.addView(view);
     }
 }

@@ -14,8 +14,6 @@ public class PasswordBox {
     private PasswordBox() {
     }
 
-    ;
-
     public static LinearLayout newBox(Context context) {
         LayoutInflater iInflater = LayoutInflater.from(context);
         LinearLayout box = (LinearLayout) iInflater.inflate(R.layout.password_box, null);
