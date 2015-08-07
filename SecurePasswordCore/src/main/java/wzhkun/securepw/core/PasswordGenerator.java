@@ -38,7 +38,7 @@ public class PasswordGenerator implements Serializable {
 		for (int i = 0; i < 长度; i++) {
 			密码 += random(库);
 		}
-		if (至少一位为数字 && 至少一位为特殊符号) {
+		if (至少一位为数字 && 至少一位为特殊符号 && 长度>=2) {
 			while (!(contains(密码, 数字) && contains(密码, 特殊符号))) {
 				密码 = randomReplace(密码, 数字);
 				密码 = randomReplace(密码, 特殊符号);
