@@ -18,7 +18,7 @@
 <p>
 本软件用java开发<BR><BR>
 Desktop版本需要JRE 8以上<BR><BR>
-Android版本正在编写中...
+Android版本需要4.0+(SDK15+)(暂时完成了基本功能)
 </p>
 <h3>开源协议</h3>
 <a target="_blank" href="http://www.gnu.org/licenses/gpl.html"><BR/>
