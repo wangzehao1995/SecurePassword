@@ -10,11 +10,19 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Set;
+
 import wzhkun.securepw.R;
+import wzhkun.securepw.bl.BLServiceManager;
 import wzhkun.securepw.core.PasswordItem;
 
 
 public class MainActivity extends Activity {
+    public static MainActivity getMainActivity(){
+        return instance;
+    }
+    private static MainActivity instance;
+
     private FrameLayout frame;
     private LinearLayout passwordBox;
 
@@ -24,6 +32,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         frame = (FrameLayout) findViewById(R.id.main_stack_view);
+        instance=this;
 
         showSafeBox(null);
     }
@@ -55,17 +64,23 @@ public class MainActivity extends Activity {
         }
         frame.removeAllViews();
         frame.addView(passwordBox);
-        loadPasswordItems();
+        reloadPasswordItems();
     }
 
-    private void loadPasswordItems() {
+    public void reloadPasswordItems() {
         passwordBox.removeAllViews();
+        addDoubleClickToCopyLabel();
+
+        Set<PasswordItem> items=BLServiceManager.getPasswordSafeBL().getPasswordItems();
+        for(PasswordItem item:items){
+            passwordBox.addView(new PasswordItemView(this,item).getView());
+        }
+    }
+
+    private void addDoubleClickToCopyLabel(){
         TextView doubleClickToCopyLabel = new TextView(this);
         doubleClickToCopyLabel.setText(R.string.double_click_to_copy);
         passwordBox.addView(doubleClickToCopyLabel);
-        PasswordItem item = new PasswordItem("app", "account", "pw");
-        passwordBox.addView(new PasswordItemView(this, item).getView());
-        passwordBox.addView(new PasswordItemView(this, item).getView());
     }
 
     public void showChangePassword(MenuItem item) {

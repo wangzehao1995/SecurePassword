@@ -3,6 +3,8 @@ package wzhkun.securepw.ui.android;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import wzhkun.securepw.R;
+import wzhkun.securepw.bl.BLServiceManager;
 import wzhkun.securepw.core.PasswordItem;
+import wzhkun.securepw.ui.android.alert.UnableToAccessFileAlert;
 import wzhkun.securepw.ui.android.alert.WrongPasswordAlert;
 
 /**
@@ -20,9 +26,9 @@ import wzhkun.securepw.ui.android.alert.WrongPasswordAlert;
 public class PasswordItemView {
     private ViewGroup view;
     private PasswordItem item;
-    private Context context;
+    private MainActivity context;
 
-    public PasswordItemView(final Context context, PasswordItem item) {
+    public PasswordItemView(final MainActivity context, PasswordItem item) {
         LayoutInflater iInflater = LayoutInflater.from(context);
 
         this.view = (ViewGroup) iInflater.inflate(R.layout.password_item, null);
@@ -45,7 +51,6 @@ public class PasswordItemView {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new WrongPasswordAlert(context).show();
                 edit();
             }
         });
@@ -58,10 +63,21 @@ public class PasswordItemView {
     }
 
     private void edit() {
+        Intent intent = new Intent();
+        intent.setClass(context, EditActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("passwordItem",item);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
     }
 
     private void delete() {
-
+        try {
+            BLServiceManager.getPasswordSafeBL().removePasswordItem(item);
+            context.reloadPasswordItems();
+        } catch (IOException e) {
+            new UnableToAccessFileAlert(context).show();
+        }
     }
 
     public View getView() {

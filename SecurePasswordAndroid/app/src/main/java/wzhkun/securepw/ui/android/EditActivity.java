@@ -1,6 +1,7 @@
 package wzhkun.securepw.ui.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -16,6 +17,7 @@ import wzhkun.securepw.core.PasswordItem;
 import wzhkun.securepw.ui.android.alert.UnableToAccessFileAlert;
 
 public class EditActivity extends Activity {
+
     private EditText app;
     private EditText account;
     private EditText oldPassword;
@@ -46,9 +48,16 @@ public class EditActivity extends Activity {
         firstCharLetter = (CheckBox) findViewById(R.id.edit_first_char_letter);
         atLeastOneNumber = (CheckBox) findViewById(R.id.edit_at_least_one_number);
         atLeastOneSymbol = (CheckBox) findViewById(R.id.edit_at_least_one_symbol);
+
+        Intent intent=this.getIntent();
+        PasswordItem item= (PasswordItem) intent.getSerializableExtra("passwordItem");
+        setPasswordItem(item);
     }
 
-    public void setPasswordItem(PasswordItem item) {
+    private void setPasswordItem(PasswordItem item) {
+        if(item==null){
+            return;
+        }
         this.old = item;
         this.app.setText(item.getApp());
         this.account.setText(item.getAccount());
@@ -61,12 +70,12 @@ public class EditActivity extends Activity {
 
             PasswordGenerator pg = new PasswordGenerator();
             pg.set长度(length);
-            pg.set大小写混合(upperCase.isSelected());
-            pg.set字母数字混合(number.isSelected());
-            pg.set字母符号混合(symbol.isSelected());
-            pg.set第一位为字母(firstCharLetter.isSelected());
-            pg.set至少一位为数字(atLeastOneNumber.isSelected());
-            pg.set至少一位为特殊符号(atLeastOneSymbol.isSelected());
+            pg.set大小写混合(upperCase.isChecked());
+            pg.set字母数字混合(number.isChecked());
+            pg.set字母符号混合(symbol.isChecked());
+            pg.set第一位为字母(firstCharLetter.isChecked());
+            pg.set至少一位为数字(atLeastOneNumber.isChecked());
+            pg.set至少一位为特殊符号(atLeastOneSymbol.isChecked());
 
             password.setText(pg.generate());
         } catch (NumberFormatException e) {
@@ -78,6 +87,7 @@ public class EditActivity extends Activity {
         try {
             PasswordItem new_ = new PasswordItem(app.getText().toString(), account.getText().toString(), password.getText().toString());
             BLServiceManager.getPasswordSafeBL().updatePasswordItem(old, new_);
+            MainActivity.getMainActivity().reloadPasswordItems();
             cancel(null);
         } catch (IOException e) {
             new UnableToAccessFileAlert(this).show();
