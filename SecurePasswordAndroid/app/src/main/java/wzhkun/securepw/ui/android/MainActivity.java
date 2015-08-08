@@ -2,6 +2,7 @@ package wzhkun.securepw.ui.android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +31,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         frame = (FrameLayout) findViewById(R.id.main_stack_view);
         instance=this;
 
@@ -91,11 +91,17 @@ public class MainActivity extends Activity {
     }
 
     public void showImport(MenuItem item) {
-        showView(Imexport.getImport(this));
+        Intent intent = new Intent();
+        intent.setClass(this, ImexportActivity.class);
+        intent.putExtra("type",ImexportActivity.IMPORT);
+        this.startActivity(intent);
     }
 
     public void showExport(MenuItem item) {
-        showView(Imexport.getExport(this));
+        Intent intent = new Intent();
+        intent.setClass(this, ImexportActivity.class);
+        intent.putExtra("type", ImexportActivity.EXPORT);
+        this.startActivity(intent);
     }
 
     public void lock(MenuItem item) {

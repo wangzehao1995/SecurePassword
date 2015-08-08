@@ -25,6 +25,7 @@
         <activity
             android:name=".ui.android.EditActivity"
             android:label="@string/title_activity_edit_actibity"></activity>
+        <activity android:name=".ui.android.ImexportActivity"></activity>
     </application>
 
 </manifest>
