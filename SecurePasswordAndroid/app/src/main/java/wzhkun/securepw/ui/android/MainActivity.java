@@ -83,7 +83,9 @@ public class MainActivity extends Activity {
     }
 
     public void showChangePassword(MenuItem item) {
-
+        Intent intent = new Intent();
+        intent.setClass(this, ChangePasswordActivity.class);
+        this.startActivity(intent);
     }
 
     public void showSync(MenuItem item) {

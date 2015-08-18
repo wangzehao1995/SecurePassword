@@ -44,4 +44,6 @@
     <string name="export_file">导出的文件</string>
     <string name="import_file_password">导入文件密码</string>
     <string name="export_file_password">导出文件密码</string>
+    <string name="title_activity_change_password">ChangePasswordActivity</string>
+    <string name="change_password_label">请输入新的密码</string>
 </resources>

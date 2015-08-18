@@ -63,6 +63,9 @@ public class ImexportActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data==null){
+            return;
+        }
         if (requestCode == FILE_SELECT_CODE) {
             Uri uri = data.getData();
             if (uri != null) {
