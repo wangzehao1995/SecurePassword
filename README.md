@@ -13,12 +13,18 @@
 如果所有账户用同一个密码，这样密码安全得不到保障，有很多网站直接对密码**明文**存储在数据库中<BR>
 但是如果用不一样的密码，记起来又特别费心，所以我写了这么一个软件<BR>
 
+<h3>Android相关求助</h3>
+<p>
+1.Android的Export Activity，我并找不到一个save dialog<br>
+2.Android无法获得文件访问权限问题，无法访问存储在onedrive的文件<br>
+</p>
+
 <BR></p>
 <h3>运行环境</h3>
 <p>
 本软件用java开发<BR><BR>
 Desktop版本需要JRE 8以上<BR><BR>
-Android版本需要4.0+(SDK15+)(暂时只完成了基本功能)
+Android版本需要4.0+(SDK15+)
 </p>
 <h3>开源协议</h3>
 <a target="_blank" href="http://www.gnu.org/licenses/gpl.html"><BR/>
@@ -34,4 +40,4 @@ GPL
 <h4>菜单</h4>
 ![](/readme/menu.PNG)  ![](/readme/menua.png)
 <h4>导入/导出密码文件</h4>
-![](/readme/import.PNG)
+![](/readme/import.PNG)  ![](/readme/importa.PNG)
