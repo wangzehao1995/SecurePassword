@@ -11,11 +11,17 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Set;
+
+import javax.crypto.BadPaddingException;
 
 import wzhkun.securepw.R;
 import wzhkun.securepw.bl.BLServiceManager;
 import wzhkun.securepw.core.PasswordItem;
+import wzhkun.securepw.ui.android.alert.UnableToAccessFileAlert;
+import wzhkun.securepw.ui.android.alert.WrongPasswordAlert;
+import wzhkun.securepw.ui.android.alert.WrongSafeFileAlert;
 
 
 public class MainActivity extends Activity {
@@ -34,6 +40,12 @@ public class MainActivity extends Activity {
         frame = (FrameLayout) findViewById(R.id.main_stack_view);
         instance=this;
 
+        try {
+            SyncActivity.setSyncFile(this,BLServiceManager.getSettingBL().getSyncFilePath());
+        } catch (IOException e) {
+            new UnableToAccessFileAlert(this).show();
+        }
+
         showSafeBox(null);
     }
 
@@ -51,7 +63,15 @@ public class MainActivity extends Activity {
     }
 
     public void sync(View view) {
-
+        try {
+            BLServiceManager.getPasswordSafeBL().sync();
+        } catch (BadPaddingException e) {
+            new WrongPasswordAlert(this).show();
+        } catch (ClassNotFoundException e) {
+            new WrongSafeFileAlert(this).show();
+        } catch (IOException e) {
+            new UnableToAccessFileAlert(this).show();
+        }
     }
 
     public void setting(View view) {
@@ -89,7 +109,9 @@ public class MainActivity extends Activity {
     }
 
     public void showSync(MenuItem item) {
-
+        Intent intent = new Intent();
+        intent.setClass(this, SyncActivity.class);
+        this.startActivity(intent);
     }
 
     public void showImport(MenuItem item) {

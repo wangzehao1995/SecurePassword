@@ -46,4 +46,5 @@
     <string name="export_file_password">导出文件密码</string>
     <string name="title_activity_change_password">ChangePasswordActivity</string>
     <string name="change_password_label">请输入新的密码</string>
+    <string name="title_activity_sync">SyncActivity</string>
 </resources>
