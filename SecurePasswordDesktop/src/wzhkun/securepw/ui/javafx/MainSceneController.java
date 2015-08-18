@@ -42,6 +42,14 @@ public class MainSceneController {
 		}
 	}
 	
+	public void trySync(){
+		try {
+			BLServiceManager.getPasswordSafeBL().sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@FXML
 	private BorderPane borderPane;
 	

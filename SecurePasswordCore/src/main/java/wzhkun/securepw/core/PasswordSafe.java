@@ -139,17 +139,20 @@ public class PasswordSafe extends Safe<PasswordItem>implements Cloneable {
 
 	private void importFromSafe(PasswordSafe safe) {
 		NextItem: for (PasswordItem item : safe.allItems()) {
-			for (PasswordItem myItem : entities) {
-				if (myItem.equals(item)) {
-					if (myItem.getUpdateTime().before(item.getUpdateTime())) {
-						entities.remove(myItem);
-						entities.add(item);
-						continue NextItem;
+			if(entities.contains(item)){
+				for (PasswordItem myItem : entities) {
+					if (myItem.equals(item)) {
+						if (myItem.getUpdateTime().before(item.getUpdateTime())) {
+							entities.remove(myItem);
+							entities.add(item);
+							continue NextItem;
+						}
 					}
 				}
+			}else{
+				entities.add(item);
 			}
-
-			add(item);
+			
 		}
 	}
 

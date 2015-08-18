@@ -1,19 +1,14 @@
 package wzhkun.securepw.ui.javafx;
 
-import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import wzhkun.securepw.bl.BLServiceManager;
-import wzhkun.securepw.bl.MyFile;
 import wzhkun.securepw.core.PasswordItem;
 
-public class PasswordBoxController implements Initializable{
+public class PasswordBoxController{
 	
 	@FXML
 	VBox box;
@@ -34,10 +29,5 @@ public class PasswordBoxController implements Initializable{
 		for (PasswordItem item : items) {
 			addPasswordItem(item);
 		}
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		BLServiceManager.getPasswordSafeBL().setSyncFile(MyFile.toMyFile(new File(BLServiceManager.getSettingBL().getSyncFilePath())));
 	}
 }

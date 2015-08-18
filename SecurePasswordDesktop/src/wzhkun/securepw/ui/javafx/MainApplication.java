@@ -94,6 +94,9 @@ public class MainApplication extends Application {
 		if(passwordBox==null){
 			passwordBox=UIFactory.getUIFactory().getPasswordBox();
 		}
+		
+		main.getController().trySync();
+		
 		main.getController().setMainScene(passwordBox);
 		refreshPasswordBox();
 	}
