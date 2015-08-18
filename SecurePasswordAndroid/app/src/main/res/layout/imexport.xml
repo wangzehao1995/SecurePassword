@@ -8,28 +8,29 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/import_file"
         android:id="@+id/imexport_label_imexport_from"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBaseline="@+id/imexport_choose"/>
+        android:layout_above="@+id/imexport_from"
+        android:layout_alignLeft="@+id/imexport_imexport"
+        android:layout_centerHorizontal="true"
+         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose"
         android:id="@+id/imexport_choose"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imexport_label_imexport_from"
-        android:layout_toEndOf="@+id/imexport_label_imexport_from" />
+        android:layout_above="@+id/imexport_label_imexport_password"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imexport_from"
-        android:layout_below="@+id/imexport_choose"
+        android:layout_above="@+id/imexport_label_imexport_password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toStartOf="@+id/imexport_choose"
+        android:layout_toLeftOf="@+id/imexport_choose" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,9 +38,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/import_file_password"
         android:id="@+id/imexport_label_imexport_password"
-        android:layout_below="@+id/imexport_from"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/imexport_use_my_password"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -47,21 +47,17 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/imexport_password"
-        android:layout_below="@+id/imexport_label_imexport_password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/use_my_password"
         android:id="@+id/imexport_use_my_password"
-        android:layout_below="@+id/imexport_from"
-        android:layout_toRightOf="@+id/imexport_label_imexport_password"
-        android:layout_toEndOf="@+id/imexport_label_imexport_password"
-        android:checked="true" />
+        android:checked="true"
+        android:layout_above="@+id/imexport_password"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -69,15 +65,13 @@
         android:text="@string/import_"
         android:id="@+id/imexport_imexport"
         android:layout_below="@+id/imexport_password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
         android:id="@+id/imexport_cancel"
-        android:layout_alignTop="@+id/imexport_imexport"
-        android:layout_toRightOf="@+id/imexport_imexport"
-        android:layout_toEndOf="@+id/imexport_imexport" />
+        android:layout_below="@+id/imexport_imexport"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
