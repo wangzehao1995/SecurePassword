@@ -70,6 +70,10 @@ public class MainActivity extends Activity {
         } catch (ClassNotFoundException e) {
             new WrongSafeFileAlert(this).show();
         } catch (IOException e) {
+            e.printStackTrace();
+            new UnableToAccessFileAlert(this).show();
+        } catch (SecurityException e){
+            e.printStackTrace();
             new UnableToAccessFileAlert(this).show();
         }
     }

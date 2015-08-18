@@ -20,12 +20,12 @@ public class PasswordSafeBL {
 	public PasswordSafe getPasswordSafe() {
 		return safe;
 	}
-	
+
 	public void login(String password) throws BadPaddingException, ClassNotFoundException, IOException {
-		PasswordSafe safe = PasswordSafe.getSafe(localSafeFile.getInputStream(),password);
+		PasswordSafe safe = PasswordSafe.getSafe(localSafeFile.getInputStream(), password);
 		BLServiceManager.getPasswordSafeBL().setPasswordSafe(safe);
 	}
-	
+
 	public void reset(String password) throws IOException {
 		PasswordSafe safe = PasswordSafe.newSafe(password);
 		BLServiceManager.getPasswordSafeBL().setPasswordSafe(safe);
@@ -81,19 +81,17 @@ public class PasswordSafeBL {
 		safe.export(to.getOutputStream(), password);
 	}
 
-	
-
 	public void setSyncFile(MyFile file) {
 		syncSafeFile = file;
 	}
-	
-	public void setLocalFile(MyFile file){
-		localSafeFile=file;
+
+	public void setLocalFile(MyFile file) {
+		localSafeFile = file;
 	}
 
 	public void sync() throws BadPaddingException, ClassNotFoundException, IOException {
 		if (syncSafeFile != null) {
-			PasswordSafe target=PasswordSafe.getSafe(syncSafeFile.getInputStream(), safe);
+			PasswordSafe target = PasswordSafe.getSafe(syncSafeFile.getInputStream(), safe);
 			safe.synchronize(target);
 			safe.save(localSafeFile.getOutputStream());
 			target.save(syncSafeFile.getOutputStream());
@@ -104,7 +102,7 @@ public class PasswordSafeBL {
 		safe.save(localSafeFile.getOutputStream());
 		try {
 			sync();
-		} catch (BadPaddingException | ClassNotFoundException | IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
