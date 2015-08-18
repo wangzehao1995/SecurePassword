@@ -40,4 +40,4 @@ GPL
 <h4>菜单</h4>
 ![](/readme/menu.PNG)  ![](/readme/menua.png)
 <h4>导入/导出密码文件</h4>
-![](/readme/import.PNG)  ![](/readme/importa.PNG)
+![](/readme/import.PNG)  ![](/readme/importa.png)
