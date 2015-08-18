@@ -130,11 +130,10 @@ public class ImexportActivity extends Activity {
                                 return getContentResolver().openOutputStream(fileUri);
                             }
                         });
-                        if (type == IMPORT) {
-                            BLServiceManager.getPasswordSafeBL().import_(file);
-                        } else {
-                            BLServiceManager.getPasswordSafeBL().export(file);
-                        }
+
+                        BLServiceManager.getPasswordSafeBL().import_(file);
+
+                        cancel();
                     } catch (BadPaddingException e) {
                         new WrongPasswordAlert(ImexportActivity.this).show();
                     } catch (ClassNotFoundException e) {
@@ -148,7 +147,43 @@ public class ImexportActivity extends Activity {
     }
 
     private void setExportListener() {
+        imexport_choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(Intent.createChooser(intent, ""), FILE_SELECT_CODE);
+            }
+        });
+        imexport_imexport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fileUri != null) {
+                    try {
+                        MyFile file = new MyFile();
+                        file.setInputStream(new IOStreamSupplier<InputStream>() {
+                            @Override
+                            public InputStream get() throws IOException {
+                                return getContentResolver().openInputStream(fileUri);
+                            }
+                        });
+                        file.setOutputStream(new IOStreamSupplier<OutputStream>() {
+                            @Override
+                            public OutputStream get() throws IOException {
+                                return getContentResolver().openOutputStream(fileUri);
+                            }
+                        });
 
+                        BLServiceManager.getPasswordSafeBL().export(file);
+
+                        cancel();
+                    } catch (IOException e) {
+                        new UnableToAccessFileAlert(ImexportActivity.this).show();
+                    }
+                }
+            }
+        });
     }
 
     private void setCommonListener() {
