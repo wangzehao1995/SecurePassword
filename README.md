@@ -17,6 +17,7 @@
 <p>
 1.Android的Export Activity，我并找不到一个save dialog<br>
 2.Android无法获得文件访问权限问题，无法访问存储在onedrive的文件<br>
+如果有人能帮助我解决这个问题，可以发送邮件至"wzhkun@163.com"
 </p>
 
 <BR></p>
