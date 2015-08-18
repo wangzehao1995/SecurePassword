@@ -3,6 +3,7 @@ package wzhkun.securepw.ui.javafx;
 import static wzhkun.securepw.ui.javafx.DPIFormatter.*;
 
 import java.io.File;
+import java.net.URI;
 import java.util.Stack;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -29,6 +30,11 @@ public class MainApplication extends Application {
 	{
 		BLServiceManager.getSettingBL().setSettingFile(MyFile.toMyFile(SETTING_FILE));
 		BLServiceManager.getPasswordSafeBL().setLocalFile(MyFile.toMyFile(LOCAL_SAFE));
+		try{
+			BLServiceManager.getPasswordSafeBL().setSyncFile(MyFile.toMyFile(new File(URI.create(BLServiceManager.getSettingBL().getSyncFilePath()))));
+		}catch(Exception uriFormateException){
+			uriFormateException.printStackTrace();
+		}
 	}
 
 	private Stage stage;

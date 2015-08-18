@@ -2,6 +2,7 @@ package wzhkun.securepw.ui.javafx;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import wzhkun.securepw.bl.BLServiceManager;
+import wzhkun.securepw.bl.MyFile;
 import wzhkun.securepw.bl.SettingBL;
 import wzhkun.securepw.ui.javafx.alert.UnableToAccessFileAlert;
 
@@ -28,7 +30,7 @@ public class SyncController implements Initializable{
 		if(file==null){
 			return;
 		}
-		filePath.setText(file.getAbsolutePath());
+		filePath.setText(file.toURI().toString());
 		setPath();
 	}
 	
@@ -36,6 +38,7 @@ public class SyncController implements Initializable{
 	public void setPath(){
 		try {
 			bl.setSyncFilePath(filePath.getText());
+			BLServiceManager.getPasswordSafeBL().setSyncFile(MyFile.toMyFile(new File(URI.create(BLServiceManager.getSettingBL().getSyncFilePath()))));
 		} catch (IOException e) {
 			new UnableToAccessFileAlert().showAndWait();
 		}
